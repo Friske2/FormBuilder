@@ -12,12 +12,14 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-const props = defineProps<{
-    value: string | null | number;
-    props: {
-        [key: string]: any;
-    }
-}>()
+interface FieldSelectProp {
+  value: string | null | number;
+  props: {
+    [key: string]: any;
+  };
+}
+
+const props = defineProps<FieldSelectProp>()
 
 const value = ref()
 const emit = defineEmits(['update:value'])

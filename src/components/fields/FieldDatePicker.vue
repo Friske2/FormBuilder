@@ -11,12 +11,14 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const props = defineProps<{
+interface FieldDatePickerProp {
   value: string;
   props: {
     [key: string]: any;
   };
-}>();
+}
+
+const props = defineProps<FieldDatePickerProp>();
 
 const dateValue = ref("");
 const emit = defineEmits(["update:value"]);

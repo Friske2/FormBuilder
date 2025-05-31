@@ -5,7 +5,9 @@
 </template>
 <script lang="ts" setup>
 import { defineProps } from "vue";
-const props = defineProps<{
-    span: number
-}>();
+interface FieldColProp {
+    span: number;
+}
+
+const props = defineProps<FieldColProp>();
 </script>

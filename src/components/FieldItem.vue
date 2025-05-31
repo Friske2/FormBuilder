@@ -16,14 +16,17 @@ import FieldDatePicker from "./fields/FieldDatePicker.vue";
 import FieldTimeSelect from "./fields/FieldTimeSelect.vue";
 import FieldSwitch from "./fields/FieldSwitch.vue";
 import FieldCheckbox from "./fields/FieldCheckbox.vue";
-const props = defineProps<{
+
+interface FieldItemProp {
   value: any;
   field: {
     code: string;
     is: string;
     props?: Record<string, any>;
   };
-}>();
+};
+
+const props = defineProps<FieldItemProp>();
 const mapComponent = (field: any) => {
   const map: Record<string, any> = {
     input: FieldInput,
