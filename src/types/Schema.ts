@@ -222,6 +222,71 @@
                 "trigger": "blur"
             }
         ]
+    },
+    {
+        "label": {
+            "text": "Activity time range",
+            "position": "left"
+        },
+        "code": "range",
+        "is": "col",
+        "children": [
+            {
+                "code": "date1",
+                "is": "date-picker",
+                "span": 11,
+                "props": {
+                    "type": "date",
+                    "desc": "This date using DD-MM-YYYY format",
+                    "placeholder": "Pick a date",
+                    "format": "DD-MM-YYYY",
+                    "valueFormat": "YYYY-MM-DD",
+                    "style": {
+                        "width": "100%"
+                    }
+                },
+                "rules": [
+                    {
+                        "type": "date",
+                        "required": true,
+                        "message": "Please pick a date",
+                        "trigger": "change"
+                    }
+                ]
+            },
+            {
+                "is": "span",
+                "content": "-",
+                "props": {
+                    "style": {
+                        "textAlign": "center"
+                    }
+                },
+                "span": 2
+            },
+            {
+                "code": "time1",
+                "is": "time-select",
+                "span": 11,
+                "props": {
+                    "placeholder": "Pick a time",
+                    "start": "00:00",
+                    "end": "23:59",
+                    "step": "00:30",
+                    "style": {
+                        "width": "220px"
+                    }
+                },
+                "rules": [
+                    {
+                        "type": "string",
+                        "required": true,
+                        "message": "Please pick a time",
+                        "trigger": "change"
+                    }
+                ]
+            }
+        ]
     }
 ]
 
@@ -234,8 +299,8 @@ export interface Label {
 
 export interface Rule {
     required?: boolean;
-    message: string;
-    trigger: string;
+    message?: string;
+    trigger?: string;
     min?: number;
     max?: number;
     type?: string;
@@ -258,17 +323,37 @@ export interface Props {
     start?: string;
     end?: string;
     step?: string;
-    style?: Record<string, string>;
+    style?: StyleAttributes;
     rows?: number;
     label?: string;
+    content?: string;
 }
 
-export interface FormField {
+export interface FormField  {
     code: string;
     is: string;
     label: Label;
     props: Props;
     rules: Rule[];
+    children?: ColField[]; // For nested fields
 }
+export interface ColField {
+    span: number;
+    code: string;
+    is: string;
+    props: Props;
+    rules: Rule[];
+}
+
+export interface SpanField {
+    is: "span";
+    content: string;
+    props?: {
+        style?: StyleAttributes;
+    };
+    span?: number;
+}
+
+interface StyleAttributes extends Partial<CSSStyleDeclaration> {}
 
 export type Schema = FormField[];
