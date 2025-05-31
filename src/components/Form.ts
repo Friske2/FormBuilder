@@ -1,5 +1,4 @@
 import type { ShowIfExpression } from '../types/condition'
-import { evaluateShowIf } from '../types/condition'
 interface SchemaItem {
   code?: string
   is: string
@@ -43,4 +42,38 @@ function getAllChildCodes(children: SchemaItem[]): string[] {
     if (child.children) codes.push(...getAllChildCodes(child.children))
   }
   return codes
+}
+
+export function evaluateShowIf(expr: ShowIfExpression, formData: Record<string, any>): boolean {
+  // ✅ Base case: single condition
+  if ('field' in expr && 'operator' in expr) {
+    const fieldValue = expr.field ? formData[expr.field] : undefined
+    switch (expr.operator) {
+      case '==': return fieldValue === expr.value
+      case '!=': return fieldValue !== expr.value
+      case '>': return fieldValue > expr.value
+      case '<': return fieldValue < expr.value
+      case '>=': return fieldValue >= expr.value
+      case '<=': return fieldValue <= expr.value
+      case 'includes':
+        if (Array.isArray(fieldValue)) return fieldValue.includes(expr.value)
+        return false
+      case '!includes':
+        if (Array.isArray(fieldValue)) return !fieldValue.includes(expr.value)
+        return false
+      default:
+        return false
+    }
+  }
+
+  // ✅ Recursive group evaluation
+  if ('and' in expr && Array.isArray(expr.and)) {
+    return expr.and.every(subExpr => evaluateShowIf(subExpr, formData))
+  }
+
+  if ('or' in expr && Array.isArray(expr.or)) {
+    return expr.or.some(subExpr => evaluateShowIf(subExpr, formData))
+  }
+
+  return true // default fallback
 }

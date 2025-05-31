@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { evaluateShowIf } from './Form'
+import type { ShowIfOperator } from '../types/condition'
 import { computed } from 'vue'
-
-type ShowIfOperator = '==' | '!=' | 'includes' | '!includes' | '>' | '<' | '>=' | '<='
 
 interface ShowIfCondition {
   field?: string
@@ -20,39 +20,6 @@ const props = defineProps<{
   showIf?: ShowIfExpression 
   formData: Record<string, any>
 }>()
-
-function evaluateShowIf(expr: ShowIfExpression, formData: Record<string, any>): boolean {
-  if (!expr) return true
-  if ('field' in expr && 'operator' in expr) {
-    const fieldValue = expr.field ? formData[expr.field] : undefined
-    switch (expr.operator) {
-      case '==': return fieldValue === expr.value
-      case '!=': return fieldValue !== expr.value
-      case '>': return fieldValue > expr.value
-      case '<': return fieldValue < expr.value
-      case '>=': return fieldValue >= expr.value
-      case '<=': return fieldValue <= expr.value
-      case 'includes':
-        if (Array.isArray(fieldValue)) return fieldValue.includes(expr.value)
-        return false
-      case '!includes':
-        if (Array.isArray(fieldValue)) return !fieldValue.includes(expr.value)
-        return false
-      default:
-        return false
-    }
-  }
-
-  if ('and' in expr) {
-    return expr.and?.every(sub => evaluateShowIf(sub, formData)) ?? true
-  }
-
-  if ('or' in expr) {
-    return expr.or?.some(sub => evaluateShowIf(sub, formData)) ?? false
-  }
-
-  return true
-}
 
 const isVisible = computed(() => {
     if (!props.showIf) return true
