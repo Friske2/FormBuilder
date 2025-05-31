@@ -1,22 +1,22 @@
 <template>
   <el-form ref="warpElForm" :model="form" label-width="120px" label-position="left">
     <template v-for="field in fields" :key="field.code">
-      <ShowIfWrapper :showIf="field.showIf" :formData="form" >
+      <show-if-wrapper :showIf="field.showIf" :formData="form" >
         <el-form-item :rules="field.rules" :label-postion="field.label.position" :label="field.label.text"
           :prop="field.code">
           <template v-if="field.is == 'col'">
-            <FieldCol v-for="col in field.children" :key="col.code" :span="col.span">
+            <field-col v-for="col in field.children" :key="col.code" :span="col.span">
               <field-span :style="col.props.style" v-if="col.is == 'span'" :content="col.props.content" />
               <el-form-item v-else :rules="col.rules" :prop="col.code" :key="col.code">
-                <FieldItem :value="form[col.code]" @update:value="form[col.code] = $event" :field="col" />
+                <field-item :value="form[col.code]" @update:value="form[col.code] = $event" :field="col" />
               </el-form-item>
-            </FieldCol>
+            </field-col>
           </template>
           <template v-else>
-            <FieldItem :value="form[field.code]" @update:value="form[field.code] = $event" :field="field" />
+            <field-item :value="form[field.code]" @update:value="form[field.code] = $event" :field="field" />
           </template>
         </el-form-item>
-      </ShowIfWrapper>
+      </show-if-wrapper>
     </template>
   </el-form>
 </template>
