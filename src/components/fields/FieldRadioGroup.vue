@@ -15,12 +15,14 @@ onBeforeUpdate(() => {
   // @change="emit('update:value', checkbox)"
   emit("update:value", radio.value);
 })
-const props = defineProps<{
+interface FieldRadioGroupProp {
   value: string | null | number;
   props: {
     [key: string]: any;
   };
-}>();
+}
+
+const props = defineProps<FieldRadioGroupProp>();
 
 const radio = ref();
 const emit = defineEmits(["update:value"]);

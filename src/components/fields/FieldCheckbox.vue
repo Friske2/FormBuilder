@@ -8,12 +8,14 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const props = defineProps<{
+interface FieldCheckboxProp {
   value: string | null | number | boolean;
   props: {
     [key: string]: any;
   };
-}>();
+};
+
+const props = defineProps<FieldCheckboxProp>();
 
 const checkboxValue = ref();
 const emit = defineEmits(["update:value"]);

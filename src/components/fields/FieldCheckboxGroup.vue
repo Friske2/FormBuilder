@@ -17,12 +17,14 @@ onBeforeUpdate(() => {
   // @change="emit('update:value', checkbox)"
   emit("update:value", checkbox.value);
 })
-const props = defineProps<{
+interface FieldCheckboxGroupProp {
   value: string[] | number[] | null;
   props: {
     [key: string]: any;
   };
-}>();
+}
+
+const props = defineProps<FieldCheckboxGroupProp>();
 
 const checkbox = ref<(string | number)[]>([]);
 const emit = defineEmits(["update:value"]);

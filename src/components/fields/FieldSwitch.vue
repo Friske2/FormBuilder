@@ -8,12 +8,14 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const props = defineProps<{
+interface FieldSwitchProp {
   value: string | null | number | boolean;
   props: {
     [key: string]: any;
   };
-}>();
+}
+
+const props = defineProps<FieldSwitchProp>();
 
 const switchValue = ref();
 const emit = defineEmits(["update:value"]);

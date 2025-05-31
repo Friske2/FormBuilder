@@ -8,12 +8,14 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const props = defineProps<{
+interface FieldTimeSelectProp {
   value: string | null;
   props: {
     [key: string]: any;
   };
-}>();
+}
+
+const props = defineProps<FieldTimeSelectProp>();
 
 const timeValue = ref();
 const emit = defineEmits(["update:value"]);
