@@ -40,6 +40,7 @@ const form = reactive<Record<string, any>>({
   isActive: true,
   isAccepted: false,
 });
+const fields = reactive<Schema>(exampleForm);
 const warpElForm = ref<InstanceType<
   typeof import("element-plus")["ElForm"]
 > | null>(null);
@@ -55,7 +56,6 @@ const submit = async () => {
             form[field] = null;
           }
         });
-        console.log("Hidden fields:", hiddenFields);
         payload = { ...form };
       } else {
         console.error("Form validation failed");
@@ -70,5 +70,4 @@ const submit = async () => {
 defineExpose({
   submit,
 });
-const fields = reactive<Schema>(exampleForm);
 </script>
