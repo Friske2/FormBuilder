@@ -32,18 +32,12 @@ declare module 'vue' {
     FieldInput: typeof import('./src/components/fields/FieldInput.vue')['default']
     FieldItem: typeof import('./src/components/FieldItem.vue')['default']
     FieldRadioGroup: typeof import('./src/components/fields/FieldRadioGroup.vue')['default']
-    FieldRender: typeof import('./src/components/FieldRender.vue')['default']
-    FieldRender2: typeof import('./src/components/FieldRender2.vue')['default']
-    FieldRenderer: typeof import('./src/components/FieldRenderer.vue')['default']
     FieldSelect: typeof import('./src/components/fields/FieldSelect.vue')['default']
     FieldSpan: typeof import('./src/components/fields/FieldSpan.vue')['default']
     FieldSwitch: typeof import('./src/components/fields/FieldSwitch.vue')['default']
     FieldTimePicker: typeof import('./src/components/fields/FieldTimePicker.vue')['default']
     FieldTimeSelect: typeof import('./src/components/fields/FieldTimeSelect.vue')['default']
     FormBuilder: typeof import('./src/components/FormBuilder.vue')['default']
-    FormExample: typeof import('./src/components/FormExample.vue')['default']
-    FormRenderer: typeof import('./src/components/FormRenderer.vue')['default']
     ShowIfWrapper: typeof import('./src/components/ShowIfWrapper.vue')['default']
-    Vuenoob: typeof import('./src/components/vuenoob.vue')['default']
   }
 }
