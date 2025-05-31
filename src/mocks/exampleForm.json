@@ -131,10 +131,6 @@
         "is": "col",
         "code": "date1",
         "props": {},
-        "references": [
-            "date1",
-            "time1"
-        ],
         "showIf": {
             "field": "resource",
             "operator": "==",

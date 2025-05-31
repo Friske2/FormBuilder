@@ -1,7 +1,7 @@
 <template>
   <el-form ref="warpElForm" :model="form" label-width="120px" label-position="left">
     <template v-for="field in fields" :key="field.code">
-      <ShowIfWrapper :showIf="field.showIf" :formData="form" @clear="handleClearField">
+      <ShowIfWrapper :showIf="field.showIf" :formData="form" >
         <el-form-item :rules="field.rules" :label-postion="field.label.position" :label="field.label.text"
           :prop="field.code">
           <template v-if="field.is == 'col'">
@@ -28,6 +28,7 @@ import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
 import type { Schema } from "../types/Schema";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
+import { getHiddenFields } from '../components/Form'
 const form = reactive<Record<string, any>>({
   name: "Sample Value",
   region: null,
@@ -43,16 +44,18 @@ const warpElForm = ref<InstanceType<
   typeof import("element-plus")["ElForm"]
 > | null>(null);
 
-const handleClearField = (fieldCode: string) => {
-  if (form.hasOwnProperty(fieldCode)) {
-    form[fieldCode] = null;
-  }
-};
 const submit = async () => {
   try {
     let payload = null;
     await warpElForm.value?.validate((valid: boolean) => {
       if (valid) {
+        const hiddenFields = getHiddenFields(fields, form);
+        hiddenFields.forEach((field) => {
+          if(form.hasOwnProperty(field) && form[field]) {
+            form[field] = null;
+          }
+        });
+        console.log("Hidden fields:", hiddenFields);
         payload = { ...form };
       } else {
         console.error("Form validation failed");
