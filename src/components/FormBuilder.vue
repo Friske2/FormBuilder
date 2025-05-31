@@ -4,6 +4,7 @@
       <show-if-wrapper :showIf="field.showIf" :formData="form" >
         <el-form-item :rules="field.rules" :label-postion="field.label.position" :label="field.label.text"
           :prop="field.code">
+          <!-- render nasted field under col -->
           <template v-if="field.is == 'col'">
             <field-col v-for="col in field.children" :key="col.code" :span="col.span">
               <field-span :style="col.props.style" v-if="col.is == 'span'" :content="col.props.content" />
@@ -12,6 +13,7 @@
               </el-form-item>
             </field-col>
           </template>
+          <!-- render field item -->
           <template v-else>
             <field-item :value="form[field.code]" @update:value="form[field.code] = $event" :field="field" />
           </template>
