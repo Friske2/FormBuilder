@@ -77,7 +77,7 @@
             {
                 "required": true,
                 "message": "Please select activity resource",
-                "trigger": "blur"
+                "trigger": "change"
             }
         ]
     },
@@ -113,7 +113,7 @@
                 "type": "array",
                 "required": true,
                 "message": "Please select at least one activity type",
-                "trigger": "blur"
+                "trigger": "change"
             }
         ]
     },
@@ -200,7 +200,7 @@
             {
                 "required": true,
                 "message": "Please input activity form",
-                "trigger": "blur"
+                "trigger": "change"
             }
         ]
     },
@@ -216,7 +216,7 @@
         },
         "rules": [
             {
-                "required": false,
+                "required": true,
                 "message": "Please input activity form",
                 "trigger": "blur"
             }

@@ -2,7 +2,6 @@
   <el-radio-group
     v-bind="props.props"
     v-model="radio"
-    @change="emit('update:value', radio)"
   >
     <el-radio v-for="item in props.props.options" :value="item.value">{{
       item.label
@@ -11,8 +10,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-
+import { ref,onBeforeUpdate } from "vue";
+onBeforeUpdate(() => {
+  // @change="emit('update:value', checkbox)"
+  emit("update:value", radio.value);
+})
 const props = defineProps<{
   value: string | null | number;
   props: {

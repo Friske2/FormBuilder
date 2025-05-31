@@ -2,7 +2,6 @@
   <el-checkbox-group
     v-bind="props.props"
     v-model="checkbox"
-    @change="emit('update:value', checkbox)"
   >
     <el-checkbox v-for="item in props.props.options" :value="item.value">
       {{ item.label }}
@@ -11,8 +10,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 
+import { ref, onBeforeUpdate } from "vue";
+
+onBeforeUpdate(() => {
+  // @change="emit('update:value', checkbox)"
+  emit("update:value", checkbox.value);
+})
 const props = defineProps<{
   value: string[] | number[] | null;
   props: {

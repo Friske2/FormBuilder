@@ -1,5 +1,5 @@
 <template>
-  <el-form :model="form" label-width="120px" label-position="left">
+  <el-form ref="warpElForm" :model="form" label-width="120px" label-position="left">
     <el-form-item
       :rules="field.rules"
       v-for="field in fields"
@@ -16,7 +16,7 @@
   </el-form>
 </template>
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { reactive,ref } from "vue";
 import FieldItem from "./FieldItem.vue";
 import exampleForm from "../mocks/exampleForm.json"
 const form = reactive<Record<string, any>>({
@@ -30,5 +30,27 @@ const form = reactive<Record<string, any>>({
   isActive: true,
   isAccepted: false,
 });
+const warpElForm = ref<InstanceType<typeof import("element-plus")["ElForm"]> | null>(null);
+const submit = async () => {
+  try {
+    let payload = null;
+    await warpElForm.value?.validate((valid: boolean) => {
+      if (valid) {
+        payload = { ...form };
+      } else {
+        console.error("Form validation failed");
+      }
+    });
+    return payload;
+  } catch (error) {
+    console.error("Error during form submission:", error);
+  }
+};
+
+// Expose the submit function to the parent component via ref
+defineExpose({
+  submit,
+});
 const fields = reactive(exampleForm);
+
 </script>
