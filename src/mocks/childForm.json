@@ -1,0 +1,67 @@
+[
+    {
+        "label": {
+            "text": "Activity time range",
+            "position": "left"
+        },
+        "code": "range",
+        "is": "col",
+        "children": [
+            {
+                "code": "date1",
+                "is": "date-picker",
+                "span": 11,
+                "props": {
+                    "type": "date",
+                    "desc": "This date using DD-MM-YYYY format",
+                    "placeholder": "Pick a date",
+                    "format": "DD-MM-YYYY",
+                    "valueFormat": "YYYY-MM-DD",
+                    "style": {
+                        "width": "100%"
+                    }
+                },
+                "rules": [
+                    {
+                        "type": "date",
+                        "required": true,
+                        "message": "Please pick a date",
+                        "trigger": "change"
+                    }
+                ]
+            },
+            {
+                "is": "span",
+                "content": "-",
+                "props": {
+                    "style": {
+                        "textAlign": "center"
+                    }
+                },
+                "span": 2
+            },
+            {
+                "code": "time1",
+                "is": "time-select",
+                "span": 11,
+                "props": {
+                    "placeholder": "Pick a time",
+                    "start": "00:00",
+                    "end": "23:59",
+                    "step": "00:30",
+                    "style": {
+                        "width": "220px"
+                    }
+                },
+                "rules": [
+                    {
+                        "type": "string",
+                        "required": true,
+                        "message": "Please pick a time",
+                        "trigger": "change"
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -119,49 +119,72 @@
     },
     {
         "label": {
-            "text": "Activity date",
-            "position": "left"
-        },
-        "code": "date1",
-        "is": "date-picker",
-        "props": {
-            "type": "date",
-            "desc": "This date using DD-MM-YYYY format",
-            "placeholder": "Pick a date",
-            "format": "DD-MM-YYYY",
-            "valueFormat": "YYYY-MM-DD"
-        },
-        "rules": [
-            {
-                "type": "date",
-                "required": true,
-                "message": "Please pick a date",
-                "trigger": "change"
-            }
-        ]
-    },
-    {
-        "label": {
             "text": "Activity time",
             "position": "left"
         },
-        "code": "time1",
-        "is": "time-select",
-        "props": {
-            "placeholder": "Pick a time",
-            "start": "00:00",
-            "end": "23:59",
-            "step": "00:30",
-            "style": {
-                "width": "220px"
-            }
-        },
         "rules": [
             {
-                "type": "string",
                 "required": true,
-                "message": "Please pick a time",
-                "trigger": "change"
+                "message": ""
+            }
+        ],
+        "is": "col",
+        "code": "date1",
+        "props": {},
+        "children": [
+            {
+                "code": "date1",
+                "is": "date-picker",
+                "span": 6,
+                "props": {
+                    "type": "date",
+                    "placeholder": "Pick a date",
+                    "format": "DD-MM-YYYY",
+                    "valueFormat": "YYYY-MM-DD"
+                },
+                "rules": [
+                    {
+                        "type": "date",
+                        "required": true,
+                        "message": "Please pick a date",
+                        "trigger": "change"
+                    }
+                ]
+            },
+            {
+                "is": "span",
+                "span": 1,
+                "code": "to",
+                "props": {
+                    "content": "to",
+                    "style": {
+                        "textAlign": "center",
+                        "width": "10px"
+                    }
+                },
+                "rules": []
+            },
+            {
+                "code": "time1",
+                "is": "time-select",
+                "span": 6,
+                "props": {
+                    "placeholder": "Pick a time",
+                    "start": "00:00",
+                    "end": "23:59",
+                    "step": "00:30",
+                    "style": {
+                        "width": "220px"
+                    }
+                },
+                "rules": [
+                    {
+                        "type": "string",
+                        "required": true,
+                        "message": "Please pick a time",
+                        "trigger": "change"
+                    }
+                ]
             }
         ]
     },
