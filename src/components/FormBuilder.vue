@@ -31,7 +31,7 @@ import ShowIfWrapper from "./ShowIfWrapper.vue";
 const form = reactive<Record<string, any>>({
   name: "Sample Value",
   region: null,
-  resource: null,
+  resource: "Venue",
   type: [],
   date1: "",
   time1: null,

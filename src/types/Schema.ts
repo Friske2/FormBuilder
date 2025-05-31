@@ -44,6 +44,7 @@ export interface FormField  {
     rules: Rule[];
     showIf?: ShowIfExpression; // Condition to show/hide the field
     children?: ColField[]; // For nested fields
+    references?: string[]; // References to other fields
 }
 export interface ColField {
     span: number;

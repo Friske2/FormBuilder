@@ -68,7 +68,6 @@ watch(isVisible, (visible) => {
     toClear.forEach(field => {
       if (field in props.formData) {
         // emit clear value 
-        console.log(field)
         emit('clear', { field, value: null })
       }
     })

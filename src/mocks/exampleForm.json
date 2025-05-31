@@ -131,6 +131,10 @@
         "is": "col",
         "code": "date1",
         "props": {},
+        "references": [
+            "date1",
+            "time1"
+        ],
         "showIf": {
             "field": "resource",
             "operator": "==",
@@ -267,7 +271,7 @@
         },
         "rules": [
             {
-                "required": true,
+                "required": false,
                 "message": "Please input activity form",
                 "trigger": "blur"
             }
