@@ -43,6 +43,7 @@ declare module 'vue' {
     FormBuilder: typeof import('./src/components/FormBuilder.vue')['default']
     FormExample: typeof import('./src/components/FormExample.vue')['default']
     FormRenderer: typeof import('./src/components/FormRenderer.vue')['default']
+    ShowIfWrapper: typeof import('./src/components/ShowIfWrapper.vue')['default']
     Vuenoob: typeof import('./src/components/vuenoob.vue')['default']
   }
 }
