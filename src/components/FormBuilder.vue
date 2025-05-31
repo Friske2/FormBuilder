@@ -19,6 +19,7 @@
 import { reactive,ref } from "vue";
 import FieldItem from "./FieldItem.vue";
 import exampleForm from "../mocks/exampleForm.json"
+import type { Schema } from "../types/Schema";
 const form = reactive<Record<string, any>>({
   name: "Sample Value",
   region: null,
@@ -51,6 +52,6 @@ const submit = async () => {
 defineExpose({
   submit,
 });
-const fields = reactive(exampleForm);
+const fields = reactive<Schema>(exampleForm);
 
 </script>
