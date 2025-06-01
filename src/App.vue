@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <div class="title my-2">Form Builder Example</div>
     <FormBuilder ref="elForm" />
     <div class="flex justify-center">
        <el-button type="primary" @click="submitForm">Submit</el-button>

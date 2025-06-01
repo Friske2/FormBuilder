@@ -272,5 +272,21 @@
                 "trigger": "blur"
             }
         ]
+    },
+    {
+        "code": "text",
+        "is": "text",
+        "label": {
+            "text": " ",
+            "position": "left"
+        },
+        "props": {
+            "content": "This is a text field",
+            "style": {
+                "color": "#409eff",
+                "fontSize": "14px"
+            }
+        },
+        "rules": []
     }
 ]
