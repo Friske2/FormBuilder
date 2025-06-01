@@ -1,5 +1,13 @@
 <template>
-  <el-form ref="warpElForm" :model="form" label-width="120px" label-position="left">
+  <div class="my-2">
+    <div class="title">Form builder</div>
+    <div class="sub-title">
+      This is a simple form builder using Element Plus and Vue 3. It allows you to create forms dynamically based on a JSON schema.
+      <br />
+      <strong>Note:</strong> The form does not submit to any backend service, but you can use the <code>submit</code> method to get the form data.
+    </div>
+  </div>
+  <el-form ref="warpElForm" :model="form" v-bind="config">
     <template v-for="field in fields" :key="field.code">
       <show-if-wrapper :showIf="field.showIf" :formData="form" >
         <el-form-item :rules="field.rules" :label-postion="field.label.position" :label="field.label.text"
@@ -28,7 +36,7 @@ import FieldItem from "./FieldItem.vue";
 import exampleForm from "../mocks/exampleForm.json";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
-import type { Schema } from "../types/Schema";
+import type { Schema, FormConfig } from "../types/Schema";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
 import { getHiddenFields } from '../components/Form'
 const form = reactive<Record<string, any>>({
@@ -42,6 +50,14 @@ const form = reactive<Record<string, any>>({
   isActive: true,
   isAccepted: false,
 });
+
+const config = reactive<FormConfig>({
+  labelWidth: "120px",
+  labelPosition: "left",
+  showMessage: true,
+  inline: false,
+  size: "default",
+})
 const fields = reactive<Schema>(exampleForm);
 const warpElForm = ref<InstanceType<
   typeof import("element-plus")["ElForm"]

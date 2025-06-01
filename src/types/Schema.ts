@@ -67,3 +67,11 @@ export interface SpanField {
 interface StyleAttributes extends Partial<CSSStyleDeclaration> {}
 
 export type Schema = FormField[];
+
+export interface FormConfig {
+  labelWidth: string;
+  labelPosition: "left" | "right" | "top";
+  showMessage: boolean;
+  inline: boolean;
+  size: "default" | "small" | "large";
+}
