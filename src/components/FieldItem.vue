@@ -16,7 +16,7 @@ import FieldDatePicker from "./fields/FieldDatePicker.vue";
 import FieldTimeSelect from "./fields/FieldTimeSelect.vue";
 import FieldSwitch from "./fields/FieldSwitch.vue";
 import FieldCheckbox from "./fields/FieldCheckbox.vue";
-
+import FieldText from "./fields/FieldText.vue";
 interface FieldItemProp {
   value: any;
   field: {
@@ -37,6 +37,7 @@ const mapComponent = (field: any) => {
     "radio-group": FieldRadioGroup,
     "date-picker": FieldDatePicker,
     "time-select": FieldTimeSelect,
+    text : FieldText,
   };
 
   return map[field.is] || field.is;

@@ -35,6 +35,7 @@ declare module 'vue' {
     FieldSelect: typeof import('./src/components/fields/FieldSelect.vue')['default']
     FieldSpan: typeof import('./src/components/fields/FieldSpan.vue')['default']
     FieldSwitch: typeof import('./src/components/fields/FieldSwitch.vue')['default']
+    FieldText: typeof import('./src/components/fields/FieldText.vue')['default']
     FieldTimePicker: typeof import('./src/components/fields/FieldTimePicker.vue')['default']
     FieldTimeSelect: typeof import('./src/components/fields/FieldTimeSelect.vue')['default']
     FormBuilder: typeof import('./src/components/FormBuilder.vue')['default']
