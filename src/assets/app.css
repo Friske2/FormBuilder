@@ -32,10 +32,9 @@
 }
 
 .title {
-    font-size: 24px;
+    font-size: 1.8rem; /* Converted 24px to rem */
     font-weight: bold;
     text-align: left;
-    margin: 20px 0;
     color: #333;
 }
 
@@ -49,4 +48,28 @@
     .title {
         font-size: 18px;
     }
+}
+
+.sub-title {
+    font-size: 1rem;
+    font-weight: normal;
+    text-align: left;
+    margin: 10px 0;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .sub-title {
+        font-size: 1.125rem; /* Converted 18px to rem */
+    }
+}
+
+@media (max-width: 576px) {
+    .sub-title {
+        font-size: 16px;
+    }
+}
+
+.title + .sub-title {
+    margin: 0;
 }
