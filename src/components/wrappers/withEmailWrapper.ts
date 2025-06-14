@@ -1,8 +1,6 @@
 import { defineComponent,h } from 'vue'
 import FieldInput from '../fields/FieldInput.vue'
 function withEmailWrapper(OriginalComponent: any) {
-    // const props = defineProps<FieldInputProp>();
-    console.log('withEmailWrapper', OriginalComponent)
     return defineComponent({
         props: {
             value: {
@@ -15,7 +13,6 @@ function withEmailWrapper(OriginalComponent: any) {
             }
         },
         setup(props, { emit }) {
-            console.log('withEmailWrapper props', props.props)
             const onUpdate = (val: any) => {
                 emit('update:value', val)
             }
