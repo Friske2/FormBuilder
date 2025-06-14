@@ -1,13 +1,4 @@
 <template>
-  <div class="my-2">
-    <div class="title">Form builder</div>
-    <div class="sub-title">
-      This is a simple form builder using Element Plus and Vue 3. It allows you to create forms dynamically based on a JSON schema.
-      <br />
-      <strong>Note:</strong> The form does not submit to any backend service, but you can use the <code>submit</code> method to get the form data.
-    </div>
-  </div>
-  <div>
     <el-form ref="warpElForm" :model="form" v-bind="config">
       <template v-for="field in warpField" :key="field.code">
         <show-if-wrapper :showIf="field.showIf" :formData="form" >
@@ -32,7 +23,6 @@
         </show-if-wrapper>
       </template>
     </el-form>
-    </div>
 </template>
 <script lang="ts" setup>
 import { initStructure } from "./Form"
