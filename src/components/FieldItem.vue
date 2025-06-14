@@ -17,6 +17,7 @@ import FieldTimeSelect from "./fields/FieldTimeSelect.vue";
 import FieldSwitch from "./fields/FieldSwitch.vue";
 import FieldCheckbox from "./fields/FieldCheckbox.vue";
 import FieldText from "./fields/FieldText.vue";
+import { EmailWrapper } from './wrappers/withEmailWrapper'
 interface FieldItemProp {
   value: any;
   field: {
@@ -32,6 +33,7 @@ const mapComponent = (field: any) => {
     input: FieldInput,
     select: FieldSelect,
     switch: FieldSwitch,
+    email: EmailWrapper,
     checkbox: FieldCheckbox,
     "checkbox-group": FieldCheckboxGroup,
     "radio-group": FieldRadioGroup,

@@ -8,7 +8,7 @@
     </div>
   </div>
   <el-form ref="warpElForm" :model="form" v-bind="config">
-    <template v-for="field in fields" :key="field.code">
+    <template v-for="field in warpField" :key="field.code">
       <show-if-wrapper :showIf="field.showIf" :formData="form" >
         <el-form-item :rules="field.rules" :label-postion="field.label.position" :label="field.label.text"
           :prop="field.code">
@@ -39,9 +39,18 @@ import FieldSpan from "./fields/FieldSpan.vue";
 import type { Schema, FormConfig } from "../types/Schema";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
 import { getHiddenFields } from '../components/Form'
+import { validateEmailWithForm,nonValidate } from '../utils/valitator';
+interface MapFunctionRule {
+  [key: string]: (rule: any, value: any, callback: Function) => void;
+}
+
+const mapFunctionRule: MapFunctionRule = {
+  "validateEmailWithForm": validateEmailWithForm,
+};
 const form = reactive<Record<string, any>>({
   name: "Sample Value",
   region: null,
+  email: "parnupat.j@gmail.com",
   resource: "Venue",
   type: [],
   date1: "",
@@ -62,7 +71,20 @@ const fields = reactive<Schema>(exampleForm);
 const warpElForm = ref<InstanceType<
   typeof import("element-plus")["ElForm"]
 > | null>(null);
-
+const warpField = fields.map((fields)=> {
+  fields.rules.map((rule)=> {
+    if(typeof rule.validator == 'string') {
+      const funcName = rule.validator;
+      if(mapFunctionRule.hasOwnProperty(funcName)) {
+        rule.validator = mapFunctionRule[funcName];
+      } else {
+        rule.validator = nonValidate
+      }
+    }
+    return rule;
+  })
+  return fields
+})
 const submit = async () => {
   try {
     let payload = null;

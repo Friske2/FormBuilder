@@ -25,6 +25,29 @@
         ]
     },
     {
+        "code": "email",
+        "is": "email",
+        "label": {
+            "text": "Email",
+            "position": "left"
+        },
+        "props": {
+            "placeholder": "Enter yor email",
+            "desc": null
+        },
+        "rules": [
+            {
+                "required": false,
+                "validator": "validateEmailWithForm",
+                "message": "Please input a valid email",
+                "trigger": [
+                    "blur",
+                    "change"
+                ]
+            }
+        ]
+    },
+    {
         "code": "region",
         "is": "select",
         "label": {
