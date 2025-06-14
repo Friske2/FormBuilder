@@ -2,6 +2,7 @@
   <el-input
     v-model="text"
     v-bind="props.props"
+    v-cleave="props.props.cleave"
     @input="updateValue"
   />
   <span>{{ props.props.desc }}</span>

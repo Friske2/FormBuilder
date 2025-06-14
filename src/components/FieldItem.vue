@@ -1,14 +1,15 @@
 <template>
     <component
-    :is="mapComponent(field)"
-    :value="props.value"
-     @update:value="$emit('update:value', $event)"
-    :props="props.field.props"
+      :is="mapComponent(field)"
+      :value="props.value"
+      @update:value="$emit('update:value', $event)"
+      :props="props.field.props"
     />
 </template>
 <script lang="ts" setup>
 import { defineProps } from "vue";
 import FieldInput from "./fields/FieldInput.vue";
+import FieldCustomInput from "./fields/FieldCustomInput.vue";
 import FieldSelect from "./fields/FieldSelect.vue";
 import FieldRadioGroup from "./fields/FieldRadioGroup.vue";
 import FieldCheckboxGroup from "./fields/FieldCheckboxGroup.vue";
@@ -31,6 +32,7 @@ const props = defineProps<FieldItemProp>();
 const mapComponent = (field: any) => {
   const map: Record<string, any> = {
     input: FieldInput,
+    "custom-input": FieldCustomInput,
     select: FieldSelect,
     switch: FieldSwitch,
     email: EmailWrapper,
