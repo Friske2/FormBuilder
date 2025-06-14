@@ -36,21 +36,16 @@
 import { initStructure } from "./Form"
 import { reactive, ref } from "vue";
 import FieldItem from "./FieldItem.vue";
-import creditCardForm from "../mocks/creditCardForm.json";
+import exampleForm from "../mocks/exampleForm.json";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
 import type { Schema, FormConfig, FormType } from "../types/Schema";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
 import { getHiddenFields } from '../components/Form'
-import { validateEmailWithForm,nonValidate } from '../utils/valitator';
-interface MapFunctionRule {
-  [key: string]: (rule: any, value: any, callback: Function) => void;
-}
+import useValiatator from "./hooks/useValiatator"
 
-const mapFunctionRule: MapFunctionRule = {
-  "validateEmailWithForm": validateEmailWithForm,
-};
-const fields = reactive<Schema>(creditCardForm);
+const fields = reactive<Schema>(exampleForm);
+const warpField = useValiatator(fields);
 const form = reactive<FormType>(initStructure(fields));
 
 const config = reactive<FormConfig>({
@@ -64,20 +59,7 @@ const config = reactive<FormConfig>({
 const warpElForm = ref<InstanceType<
   typeof import("element-plus")["ElForm"]
 > | null>(null);
-const warpField = fields.map((fields)=> {
-  fields.rules.map((rule)=> {
-    if(typeof rule.validator == 'string') {
-      const funcName = rule.validator;
-      if(mapFunctionRule.hasOwnProperty(funcName)) {
-        rule.validator = mapFunctionRule[funcName];
-      } else {
-        rule.validator = nonValidate
-      }
-    }
-    return rule;
-  })
-  return fields
-})
+
 const submit = async () => {
   try {
     let payload = null;

@@ -8,7 +8,6 @@ export function validateEmail(email: string): boolean {
 }
 export function validateEmailWithForm(rule: any, value: any, callback: Function) {
     // const value = ruleFormRef.value;
-    console.log('validateEmailWithForm', rule, value, callback);
     const isRequired = rule.required;
     if(!isRequired && !value) return callback();
     if (!value) { 
