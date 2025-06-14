@@ -2,6 +2,7 @@
     {
         "code": "cardHolderName",
         "is": "input",
+        "defaultValue": "PARNUPAT JANSIRI",
         "label": {
             "text": "Card Holder Name",
             "position": "left"
@@ -12,7 +13,7 @@
         },
         "rules": [
             {
-                "required": true,
+                "required": false,
                 "message": "Please input Card Holder",
                 "trigger": "change"
             }
@@ -20,7 +21,8 @@
     },
     {
         "code": "cardNumber",
-        "is": "custom-input",
+        "is": "input",
+        "defaultValue": "41111111111111111",
         "label": {
             "text": "Card Number",
             "position": "left"
@@ -34,7 +36,7 @@
         },
         "rules": [
             {
-                "required": true,
+                "required": false,
                 "message": "Please input Card Number",
                 "trigger": "change"
             }
@@ -47,7 +49,7 @@
         },
         "rules": [
             {
-                "required": true,
+                "required": false,
                 "message": ""
             }
         ],
@@ -57,7 +59,8 @@
         "children": [
             {
                 "code": "expiryDate",
-                "is": "custom-input",
+                "defaultValue": "12/25",
+                "is": "input",
                 "span": 10,
                 "props": {
                     "placeholder": "MM / YY",
@@ -75,7 +78,7 @@
                 "rules": [
                     {
                         "type": "date",
-                        "required": true,
+                        "required": false,
                         "message": "Please pick a date",
                         "trigger": "change"
                     }
@@ -96,6 +99,7 @@
             },
             {
                 "code": "cvv",
+                "defaultValue": "000",
                 "is": "input",
                 "span": 10,
                 "props": {
@@ -105,7 +109,7 @@
                 },
                 "rules": [
                     {
-                        "required": true,
+                        "required": false,
                         "message": "Please input cvv",
                         "trigger": "change"
                     }

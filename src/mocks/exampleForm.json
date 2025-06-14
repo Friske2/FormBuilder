@@ -1,6 +1,7 @@
 [
     {
         "code": "name",
+        "defaultValue": null,
         "is": "input",
         "label": {
             "text": "Activity name",
@@ -26,6 +27,7 @@
     },
     {
         "code": "email",
+        "defaultValue": null,
         "is": "email",
         "label": {
             "text": "Email",
@@ -49,6 +51,7 @@
     },
     {
         "code": "region",
+        "defaultValue": null,
         "is": "select",
         "label": {
             "text": "Activity zone",
@@ -79,6 +82,7 @@
     },
     {
         "code": "resource",
+        "defaultValue": "Venue",
         "is": "radio-group",
         "label": {
             "text": "Resources",
@@ -106,6 +110,7 @@
     },
     {
         "code": "type",
+        "defaultValue": [],
         "is": "checkbox-group",
         "label": {
             "text": "Activity type",
@@ -162,6 +167,7 @@
         "children": [
             {
                 "code": "date1",
+                "defaultValue": "",
                 "is": "date-picker",
                 "span": 6,
                 "props": {
@@ -194,6 +200,7 @@
             },
             {
                 "code": "time1",
+                "defaultValue": null,
                 "is": "time-select",
                 "span": 6,
                 "props": {
@@ -218,6 +225,7 @@
     },
     {
         "code": "isActive",
+        "defaultValue": false,
         "is": "switch",
         "label": {
             "text": "Is active",
@@ -234,6 +242,7 @@
     },
     {
         "code": "desc",
+        "defaultValue": "",
         "is": "input",
         "label": {
             "text": "Activity form",
@@ -280,6 +289,7 @@
     },
     {
         "code": "isAccepted",
+        "defaultValue": false,
         "is": "checkbox",
         "label": {
             "text": " ",
@@ -298,6 +308,7 @@
     },
     {
         "code": "text",
+        "defaultValue": null,
         "is": "text",
         "label": {
             "text": " ",

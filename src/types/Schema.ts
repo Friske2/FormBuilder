@@ -39,6 +39,7 @@ export interface Props {
 
 export interface FormField  {
     code: string;
+    defaultValue?: any; // Default value for the field
     is: string;
     label: Label;
     props: Props;
@@ -49,6 +50,7 @@ export interface FormField  {
 }
 export interface ColField {
     span: number;
+    defaultValue?: unknown;
     code: string;
     is: string;
     props: Props;

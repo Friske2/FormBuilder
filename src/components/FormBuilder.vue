@@ -7,7 +7,7 @@
       <strong>Note:</strong> The form does not submit to any backend service, but you can use the <code>submit</code> method to get the form data.
     </div>
   </div>
-  <div style="width:500px">
+  <div>
     <el-form ref="warpElForm" :model="form" v-bind="config">
       <template v-for="field in warpField" :key="field.code">
         <show-if-wrapper :showIf="field.showIf" :formData="form" >

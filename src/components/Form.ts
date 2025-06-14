@@ -83,7 +83,10 @@ export function initStructure(fields : Schema | ColField[]) : FormType {
   const structure: FormType = {}
   for (const field of fields) {
     if (field.code) {
-      structure[field.code] = null // หรือค่าเริ่มต้นอื่นๆ ตามต้องการ
+      const defaultValue = field.defaultValue
+      if(defaultValue !== undefined) {
+        structure[field.code] = defaultValue // ใช้ค่า defaultValue ถ้ามี
+      } 
     }
     if ('children' in field && field.children) {
       const childStructure = initStructure(field.children)
