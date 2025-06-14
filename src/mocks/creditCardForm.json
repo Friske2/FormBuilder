@@ -8,10 +8,7 @@
         },
         "props": {
             "placeholder": "Enter Card Holder",
-            "desc": null,
-            "style": {
-                "width": "400px"
-            }
+            "desc": null
         },
         "rules": [
             {
@@ -33,9 +30,6 @@
             "desc": null,
             "cleave": {
                 "creditCard": true
-            },
-            "style": {
-                "width": "400px"
             }
         },
         "rules": [
@@ -112,7 +106,7 @@
                 "rules": [
                     {
                         "required": true,
-                        "message": "Please cvv",
+                        "message": "Please input cvv",
                         "trigger": "change"
                     }
                 ]
