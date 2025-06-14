@@ -158,7 +158,13 @@
         ],
         "is": "col",
         "code": "date1",
-        "props": {},
+        "props": {
+            "className": "flex",
+            "style": {
+                "display": "flex",
+                "width": "100%"
+            }
+        },
         "showIf": {
             "field": "resource",
             "operator": "==",

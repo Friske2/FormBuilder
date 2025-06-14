@@ -27,6 +27,7 @@ declare module 'vue' {
     FieldCol: typeof import('./src/components/FieldCol.vue')['default']
     FieldCustomInput: typeof import('./src/components/fields/FieldCustomInput.vue')['default']
     FieldDatePicker: typeof import('./src/components/fields/FieldDatePicker.vue')['default']
+    FieldDiv: typeof import('./src/components/fields/FieldDiv.vue')['default']
     FieldInput: typeof import('./src/components/fields/FieldInput.vue')['default']
     FieldItem: typeof import('./src/components/FieldItem.vue')['default']
     FieldRadioGroup: typeof import('./src/components/fields/FieldRadioGroup.vue')['default']

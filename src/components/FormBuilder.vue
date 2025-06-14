@@ -15,12 +15,14 @@
             :prop="field.code">
             <!-- render nasted field under col -->
             <template v-if="field.is == 'col'">
-              <field-col v-for="col in field.children" :key="col.code" :span="col.span">
-                <field-span :style="col.props.style" v-if="col.is == 'span'" :content="col.props.content" />
-                <el-form-item v-else :rules="col.rules" :prop="col.code" :key="col.code">
-                  <field-item :value="form[col.code]" @update:value="form[col.code] = $event" :field="col" />
-                </el-form-item>
-              </field-col>
+              <field-div :props="field.props">
+                <field-col v-for="col in field.children" :key="col.code" :span="col.span">
+                  <field-span :style="col.props.style" v-if="col.is == 'span'" :content="col.props.content" />
+                  <el-form-item v-else :rules="col.rules" :prop="col.code" :key="col.code">
+                    <field-item :value="form[col.code]" @update:value="form[col.code] = $event" :field="col" />
+                  </el-form-item>
+                </field-col>
+              </field-div>
             </template>
             <!-- render field item -->
             <template v-else>
@@ -36,13 +38,14 @@
 import { initStructure } from "./Form"
 import { reactive, ref } from "vue";
 import FieldItem from "./FieldItem.vue";
-import exampleForm from "../mocks/exampleForm.json";
+import exampleForm from "../mocks/creditCardForm.json";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
 import type { Schema, FormConfig, FormType } from "../types/Schema";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
 import { getHiddenFields } from '../components/Form'
 import useValiatator from "./hooks/useValiatator"
+import FieldDiv from "./fields/FieldDiv.vue";
 
 const fields = reactive<Schema>(exampleForm);
 const warpField = useValiatator(fields);

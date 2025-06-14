@@ -9,7 +9,10 @@
         },
         "props": {
             "placeholder": "Enter Card Holder",
-            "desc": null
+            "desc": null,
+            "style": {
+                "width": "250px"
+            }
         },
         "rules": [
             {
@@ -32,6 +35,9 @@
             "desc": null,
             "cleave": {
                 "creditCard": true
+            },
+            "style": {
+                "width": "250px"
             }
         },
         "rules": [
@@ -55,7 +61,12 @@
         ],
         "is": "col",
         "code": "expiryDate",
-        "props": {},
+        "props": {
+            "className": "flex",
+            "style": {
+                "width": "250px"
+            }
+        },
         "children": [
             {
                 "code": "expiryDate",
