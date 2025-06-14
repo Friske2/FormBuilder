@@ -68,7 +68,7 @@ export interface SpanField {
 interface StyleAttributes extends Partial<CSSStyleDeclaration> {}
 
 export type Schema = FormField[];
-
+export type FormType = Record<string, any>
 export interface FormConfig {
   labelWidth: string;
   labelPosition: "left" | "right" | "top";

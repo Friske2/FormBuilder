@@ -33,12 +33,13 @@
     </div>
 </template>
 <script lang="ts" setup>
+import { initStructure } from "./Form"
 import { reactive, ref } from "vue";
 import FieldItem from "./FieldItem.vue";
 import creditCardForm from "../mocks/creditCardForm.json";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
-import type { Schema, FormConfig } from "../types/Schema";
+import type { Schema, FormConfig, FormType } from "../types/Schema";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
 import { getHiddenFields } from '../components/Form'
 import { validateEmailWithForm,nonValidate } from '../utils/valitator';
@@ -49,12 +50,8 @@ interface MapFunctionRule {
 const mapFunctionRule: MapFunctionRule = {
   "validateEmailWithForm": validateEmailWithForm,
 };
-const form = reactive<Record<string, any>>({
-  cardHolderName: "",
-  cardNumber: "",
-  expiryDate: "",
-  cvv: "",
-});
+const fields = reactive<Schema>(creditCardForm);
+const form = reactive<FormType>(initStructure(fields));
 
 const config = reactive<FormConfig>({
   labelWidth: "150px",
@@ -63,7 +60,7 @@ const config = reactive<FormConfig>({
   inline: false,
   size: "default",
 })
-const fields = reactive<Schema>(creditCardForm);
+
 const warpElForm = ref<InstanceType<
   typeof import("element-plus")["ElForm"]
 > | null>(null);

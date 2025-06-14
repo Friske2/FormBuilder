@@ -1,4 +1,5 @@
 import type { ShowIfExpression } from '../types/condition'
+import type { Schema,ColField,FormType } from '../types/Schema'
 interface SchemaItem {
   code?: string
   is: string
@@ -76,4 +77,18 @@ export function evaluateShowIf(expr: ShowIfExpression, formData: Record<string, 
   }
 
   return true // default fallback
+}
+
+export function initStructure(fields : Schema | ColField[]) : FormType {
+  const structure: FormType = {}
+  for (const field of fields) {
+    if (field.code) {
+      structure[field.code] = null // หรือค่าเริ่มต้นอื่นๆ ตามต้องการ
+    }
+    if ('children' in field && field.children) {
+      const childStructure = initStructure(field.children)
+      Object.assign(structure, childStructure)
+    }
+  }
+  return structure
 }
