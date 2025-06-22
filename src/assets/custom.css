@@ -1,0 +1,7 @@
+.el-form-item:not(.is-error) {
+    margin-bottom: 0.5rem;
+}
+
+.el-form-item.is-error > .el-form-item__content {
+    margin-bottom: 0rem !important;
+}

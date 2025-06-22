@@ -1,0 +1,131 @@
+[
+    {
+        "code": "cardHolderName",
+        "is": "input",
+        "defaultValue": "PARNUPAT JANSIRI",
+        "label": {
+            "text": "Card Holder Name",
+            "position": "left"
+        },
+        "props": {
+            "placeholder": "Enter Card Holder",
+            "desc": null,
+            "style": {
+                "width": "250px"
+            }
+        },
+        "rules": [
+            {
+                "required": false,
+                "message": "Please input Card Holder",
+                "trigger": "change"
+            }
+        ]
+    },
+    {
+        "code": "cardNumber",
+        "is": "input",
+        "defaultValue": "41111111111111111",
+        "label": {
+            "text": "Card Number",
+            "position": "left"
+        },
+        "props": {
+            "placeholder": "Enter Card Number",
+            "desc": null,
+            "cleave": {
+                "creditCard": true
+            },
+            "style": {
+                "width": "250px"
+            }
+        },
+        "rules": [
+            {
+                "required": false,
+                "message": "Please input Card Number",
+                "trigger": "change"
+            }
+        ]
+    },
+    {
+        "label": {
+            "text": "Expiry Date",
+            "position": "left"
+        },
+        "rules": [
+            {
+                "required": false,
+                "message": ""
+            }
+        ],
+        "is": "col",
+        "code": "expiryDate",
+        "props": {
+            "className": "flex",
+            "style": {
+                "width": "250px"
+            }
+        },
+        "children": [
+            {
+                "code": "expiryDate",
+                "defaultValue": "12/25",
+                "is": "input",
+                "span": 10,
+                "props": {
+                    "placeholder": "MM / YY",
+                    "style": {
+                        "width": "200px"
+                    },
+                    "cleave": {
+                        "date": true,
+                        "datePattern": [
+                            "m",
+                            "y"
+                        ]
+                    }
+                },
+                "rules": [
+                    {
+                        "type": "date",
+                        "required": false,
+                        "message": "Please pick a date",
+                        "trigger": "change"
+                    }
+                ]
+            },
+            {
+                "is": "span",
+                "span": 4,
+                "code": "to",
+                "props": {
+                    "content": "",
+                    "style": {
+                        "textAlign": "center",
+                        "width": "10px"
+                    }
+                },
+                "rules": []
+            },
+            {
+                "code": "cvv",
+                "defaultValue": "000",
+                "is": "input",
+                "span": 10,
+                "props": {
+                    "placeholder": "Enter CVV",
+                    "maxlength": 3,
+                    "showWordLimit": true
+                },
+                "rules": [
+                    {
+                        "required": false,
+                        "message": "Please input cvv",
+                        "trigger": "change"
+                    }
+                ]
+            }
+        ]
+    }
+]

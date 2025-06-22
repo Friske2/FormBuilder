@@ -1,6 +1,7 @@
 [
     {
         "code": "name",
+        "defaultValue": null,
         "is": "input",
         "label": {
             "text": "Activity name",
@@ -25,7 +26,32 @@
         ]
     },
     {
+        "code": "email",
+        "defaultValue": null,
+        "is": "email",
+        "label": {
+            "text": "Email",
+            "position": "left"
+        },
+        "props": {
+            "placeholder": "Enter yor email",
+            "desc": null
+        },
+        "rules": [
+            {
+                "required": false,
+                "validator": "validateEmailWithForm",
+                "message": "Please input a valid email",
+                "trigger": [
+                    "blur",
+                    "change"
+                ]
+            }
+        ]
+    },
+    {
         "code": "region",
+        "defaultValue": null,
         "is": "select",
         "label": {
             "text": "Activity zone",
@@ -56,6 +82,7 @@
     },
     {
         "code": "resource",
+        "defaultValue": "Venue",
         "is": "radio-group",
         "label": {
             "text": "Resources",
@@ -83,6 +110,7 @@
     },
     {
         "code": "type",
+        "defaultValue": [],
         "is": "checkbox-group",
         "label": {
             "text": "Activity type",
@@ -130,7 +158,13 @@
         ],
         "is": "col",
         "code": "date1",
-        "props": {},
+        "props": {
+            "className": "flex",
+            "style": {
+                "display": "flex",
+                "width": "100%"
+            }
+        },
         "showIf": {
             "field": "resource",
             "operator": "==",
@@ -139,6 +173,7 @@
         "children": [
             {
                 "code": "date1",
+                "defaultValue": "",
                 "is": "date-picker",
                 "span": 6,
                 "props": {
@@ -171,6 +206,7 @@
             },
             {
                 "code": "time1",
+                "defaultValue": null,
                 "is": "time-select",
                 "span": 6,
                 "props": {
@@ -195,6 +231,7 @@
     },
     {
         "code": "isActive",
+        "defaultValue": false,
         "is": "switch",
         "label": {
             "text": "Is active",
@@ -211,6 +248,7 @@
     },
     {
         "code": "desc",
+        "defaultValue": "",
         "is": "input",
         "label": {
             "text": "Activity form",
@@ -257,6 +295,7 @@
     },
     {
         "code": "isAccepted",
+        "defaultValue": false,
         "is": "checkbox",
         "label": {
             "text": " ",
@@ -272,5 +311,22 @@
                 "trigger": "blur"
             }
         ]
+    },
+    {
+        "code": "text",
+        "defaultValue": null,
+        "is": "text",
+        "label": {
+            "text": " ",
+            "position": "left"
+        },
+        "props": {
+            "content": "This is a text field",
+            "style": {
+                "color": "#409eff",
+                "fontSize": "14px"
+            }
+        },
+        "rules": []
     }
 ]

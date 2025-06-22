@@ -1,15 +1,8 @@
 <template>
-   <el-input
-    v-if="props.props.cleave"
-    v-model="text"
-    v-bind="props.props"
-    @input="updateValue"
-    v-cleave="props.props.cleave"
-  />
   <el-input
-    v-else
     v-model="text"
     v-bind="props.props"
+    v-cleave="props.props.cleave"
     @input="updateValue"
   />
   <span>{{ props.props.desc }}</span>
