@@ -1,0 +1,84 @@
+[
+    {
+        "code": "province",
+        "defaultValue": null,
+        "is": "select",
+        "label": {
+            "text": "จังหวัด",
+            "position": "left"
+        },
+        "props": {
+            "placeholder": "จังหวัด",
+            "filterable": true,
+            "clearable": true,
+            "options": [
+                {
+                    "label": "กรุงเทพมหานคร",
+                    "value": "01"
+                },
+                {
+                    "label": "สงขลา",
+                    "value": "02"
+                }
+            ]
+        },
+        "rules": [
+            {
+                "required": true,
+                "message": "Please select จังหวัด",
+                "trigger": "change"
+            }
+        ],
+        "effects": [
+            {
+                "target": "amphoe",
+                "actionType": "FILTER_OPTIONS",
+                "filterBy": "parentId",
+                "trigger": "change"
+            }
+        ]
+    },
+    {
+        "code": "amphoe",
+        "defaultValue": null,
+        "is": "select",
+        "label": {
+            "text": "อำเภอ",
+            "position": "left"
+        },
+        "props": {
+            "placeholder": "อำเภอ",
+            "filterable": true,
+            "clearable": true,
+            "options": [
+                {
+                    "parentId": "01",
+                    "label": "บางกอกน้อย",
+                    "value": "01"
+                },
+                {
+                    "parentId": "01",
+                    "label": "บางแค",
+                    "value": "02"
+                },
+                {
+                    "parentId": "02",
+                    "label": "หาดใหญ่",
+                    "value": "03"
+                },
+                {
+                    "parentId": "02",
+                    "label": "เมืองสงขลา",
+                    "value": "04"
+                }
+            ]
+        },
+        "rules": [
+            {
+                "required": true,
+                "message": "Please select อำเภอ",
+                "trigger": "change"
+            }
+        ]
+    }
+]

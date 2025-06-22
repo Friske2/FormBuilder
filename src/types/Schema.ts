@@ -1,4 +1,5 @@
-import type {ShowIfExpression} from './condition'; 
+import type {ShowIfExpression} from './condition';
+export type Schema = FormField[];
 export interface Label {
     text: string;
     position: string;
@@ -17,6 +18,7 @@ export interface Rule {
 export interface Option {
     label: string;
     value: string | number;
+    parentId?: string | number; // For hierarchical options
 }
 
 export interface Props {
@@ -47,6 +49,14 @@ export interface FormField  {
     showIf?: ShowIfExpression; // Condition to show/hide the field
     children?: ColField[]; // For nested fields
     references?: string[]; // References to other fields
+    effects? : effects[]; // Effects that can be applied to the field
+}
+
+export interface effects {
+    target: string;
+    actionType: string;
+    filterBy?: string;
+    trigger?: string;
 }
 export interface ColField {
     span: number;
@@ -69,7 +79,7 @@ export interface SpanField {
 
 interface StyleAttributes extends Partial<CSSStyleDeclaration> {}
 
-export type Schema = FormField[];
+
 export type FormType = Record<string, any>
 export interface FormConfig {
   labelWidth: string;

@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref,watch } from 'vue'
 
 interface FieldSelectProp {
   value: string | null | number;
@@ -19,7 +19,15 @@ interface FieldSelectProp {
   };
 }
 
+
 const props = defineProps<FieldSelectProp>()
+
+watch(() => props.value, (newValue) => {
+ console.log('props.value changed:', newValue);
+ if(newValue == null) {
+  value.value = null
+ }
+});
 
 const value = ref()
 const emit = defineEmits(['update:value'])

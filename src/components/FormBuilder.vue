@@ -1,5 +1,6 @@
 <template>
     <el-form ref="warpElForm" :model="form" v-bind="config">
+      {{ form }}
       <template v-for="field in warpField" :key="field.code">
         <show-if-wrapper :showIf="field.showIf" :formData="form" >
           <el-form-item :rules="field.rules" :label-postion="field.label.position" :label="field.label.text"
@@ -28,52 +29,28 @@
 import { initStructure } from "./Form"
 import { reactive, ref } from "vue";
 import FieldItem from "./FieldItem.vue";
-import exampleForm from "../mocks/creditCardForm.json";
+import exampleForm from "../mocks/addressForm.json";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
-import type { Schema, FormConfig, FormType } from "../types/Schema";
+import type { Schema, FormType } from "../types/Schema";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
-import { getHiddenFields } from '../components/Form'
 import useValiatator from "./hooks/useValiatator"
 import FieldDiv from "./fields/FieldDiv.vue";
-
+import useFieldEffects from "./hooks/useFieldEffect";
+import useConfigForm from "./hooks/useConfigForm";
+import useSubmit from "./hooks/useSubmit";
 const fields = reactive<Schema>(exampleForm);
 const warpField = useValiatator(fields);
 const form = reactive<FormType>(initStructure(fields));
-
-const config = reactive<FormConfig>({
-  labelWidth: "150px",
-  labelPosition: "left",
-  showMessage: true,
-  inline: false,
-  size: "default",
-})
+useFieldEffects(fields,form);
+const config = useConfigForm();
 
 const warpElForm = ref<InstanceType<
   typeof import("element-plus")["ElForm"]
 > | null>(null);
 
-const submit = async () => {
-  try {
-    let payload = null;
-    await warpElForm.value?.validate((valid: boolean) => {
-      if (valid) {
-        const hiddenFields = getHiddenFields(fields, form);
-        hiddenFields.forEach((field) => {
-          if(form.hasOwnProperty(field) && form[field]) {
-            form[field] = null;
-          }
-        });
-        payload = { ...form };
-      } else {
-        console.error("Form validation failed");
-      }
-    });
-    return payload;
-  } catch (error) {
-    console.error("Error during form submission:", error);
-  }
-};
+const { submit } = useSubmit(warpElForm, fields, form);
+
 // Expose the submit function to the parent component via ref
 defineExpose({
   submit,
