@@ -1,6 +1,5 @@
 <template>
     <el-form ref="warpElForm" :model="form" v-bind="config">
-      {{ form }}
       <template v-for="field in warpField" :key="field.code">
         <show-if-wrapper :showIf="field.showIf" :formData="form" >
           <el-form-item :rules="field.rules" :label-postion="field.label.position" :label="field.label.text"
