@@ -1,86 +1,90 @@
-import type {ShowIfExpression} from './condition';
+import type { ShowIfExpression } from "./condition";
 export type Schema = FormField[];
 export interface Label {
-    text: string;
-    position: string;
+  text: string;
+  position: string;
 }
-type FunctionValidator = (rule: any, value: any, callback: (error?: string) => void) => void;
+type FunctionValidator = (
+  rule: any,
+  value: any,
+  callback: (error?: string) => void
+) => void;
 export interface Rule {
-    required?: boolean;
-    message?: string;
-    trigger?: string | string[]; 
-    min?: number;
-    max?: number;
-    type?: string;
-    validator?: string | FunctionValidator | null | undefined;
+  required?: boolean;
+  message?: string;
+  trigger?: string | string[];
+  min?: number;
+  max?: number;
+  type?: string;
+  validator?: string | FunctionValidator | null | undefined;
 }
 
 export interface Option {
-    label: string;
-    value: string | number;
-    parentId?: string | number; // For hierarchical options
+  label: string;
+  value: string | number;
+  parentId?: string | number; // For hierarchical options
 }
 
 export interface Props {
-    placeholder?: string;
-    desc?: string | null | undefined;
-    filterable?: boolean;
-    clearable?: boolean;
-    options?: Option[];
-    type?: string;
-    format?: string;
-    valueFormat?: string;
-    start?: string;
-    end?: string;
-    step?: string;
-    style?: StyleAttributes;
-    rows?: number;
-    label?: string;
-    content?: string;
+  placeholder?: string;
+  desc?: string | null | undefined;
+  filterable?: boolean;
+  clearable?: boolean;
+  options?: Option[];
+  type?: string;
+  format?: string;
+  valueFormat?: string;
+  start?: string;
+  end?: string;
+  step?: string;
+  style?: StyleAttributes;
+  rows?: number;
+  label?: string;
+  content?: string;
 }
 
-export interface FormField  {
-    code: string;
-    defaultValue?: any; // Default value for the field
-    is: string;
-    label: Label;
-    props: Props;
-    rules: Rule[];
-    showIf?: ShowIfExpression; // Condition to show/hide the field
-    children?: ColField[]; // For nested fields
-    references?: string[]; // References to other fields
-    effects? : effects[]; // Effects that can be applied to the field
+export interface FormField {
+  code: string;
+  defaultValue?: any; // Default value for the field
+  is: string;
+  label: Label;
+  props: Props;
+  rules: Rule[];
+  showIf?: ShowIfExpression; // Condition to show/hide the field
+  children?: ColField[]; // For nested fields
+  references?: string[]; // References to other fields
+  effects?: effects[]; // Effects that can be applied to the field
 }
 
 export interface effects {
-    target: string;
-    actionType: string;
-    filterBy?: string;
-    trigger?: string;
+  target: string;
+  actionType: string;
+  filterBy?: string;
+  trigger?: string;
+  valueField?: string; // Field to set the value in the target
 }
 export interface ColField {
-    span: number;
-    defaultValue?: unknown;
-    code: string;
-    is: string;
-    props: Props;
-    rules: Rule[];
-    showIf?: ShowIfExpression; // Condition to show/hide the field
+  span: number;
+  defaultValue?: unknown;
+  code: string;
+  is: string;
+  props: Props;
+  rules: Rule[];
+  showIf?: ShowIfExpression; // Condition to show/hide the field
 }
 
 export interface SpanField {
-    is: "span";
-    content: string;
-    props?: {
-        style?: StyleAttributes;
-    };
-    span?: number;
+  is: "span";
+  content: string;
+  props?: {
+    style?: StyleAttributes;
+  };
+  span?: number;
 }
 
 interface StyleAttributes extends Partial<CSSStyleDeclaration> {}
 
-
-export type FormType = Record<string, any>
+export type FormType = Record<string, any>;
 export interface FormConfig {
   labelWidth: string;
   labelPosition: "left" | "right" | "top";
