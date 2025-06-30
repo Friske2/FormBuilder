@@ -1,0 +1,167 @@
+[
+  {
+    "code": "province",
+    "defaultValue": null,
+    "is": "select",
+    "label": {
+      "text": "จังหวัด",
+      "position": "left"
+    },
+    "props": {
+      "placeholder": "จังหวัด",
+      "filterable": true,
+      "clearable": true,
+      "options": [
+        {
+          "label": "กรุงเทพมหานคร",
+          "value": "01"
+        },
+        {
+          "label": "สงขลา",
+          "value": "02"
+        }
+      ]
+    },
+    "rules": [
+      {
+        "required": true,
+        "message": "Please select จังหวัด",
+        "trigger": "change"
+      }
+    ],
+    "effects": [
+      {
+        "target": "amphoe",
+        "actionType": "FILTER_OPTIONS",
+        "filterBy": "parentId",
+        "trigger": "change"
+      }
+    ]
+  },
+  {
+    "code": "amphoe",
+    "defaultValue": null,
+    "is": "select",
+    "label": {
+      "text": "อำเภอ",
+      "position": "left"
+    },
+    "props": {
+      "placeholder": "อำเภอ",
+      "filterable": true,
+      "clearable": true,
+      "options": [
+        {
+          "parentId": "01",
+          "label": "บางกอกน้อย",
+          "value": "01"
+        },
+        {
+          "parentId": "01",
+          "label": "บางแค",
+          "value": "02"
+        },
+        {
+          "parentId": "02",
+          "label": "หาดใหญ่",
+          "value": "03"
+        },
+        {
+          "parentId": "02",
+          "label": "เมืองสงขลา",
+          "value": "04"
+        }
+      ]
+    },
+    "rules": [
+      {
+        "required": true,
+        "message": "Please select อำเภอ",
+        "trigger": "change"
+      }
+    ],
+    "effects": [
+      {
+        "target": "district",
+        "actionType": "FILTER_OPTIONS",
+        "filterBy": "parentId",
+        "trigger": "change"
+      }
+    ]
+  },
+  {
+    "code": "district",
+    "defaultValue": null,
+    "is": "select",
+    "label": {
+      "text": "ตำบล",
+      "position": "left"
+    },
+    "props": {
+      "placeholder": "ตำบล",
+      "filterable": true,
+      "clearable": true,
+      "options": [
+        {
+          "parentId": "01",
+          "label": "บางกอกน้อย",
+          "value": "01",
+          "customField01": "96100"
+        },
+        {
+          "parentId": "01",
+          "label": "บางแค",
+          "value": "02",
+          "customField01": "10160"
+        },
+        {
+          "parentId": "02",
+          "label": "หาดใหญ่",
+          "value": "03",
+          "customField01": "90110"
+        },
+        {
+          "parentId": "02",
+          "label": "เมืองสงขลา",
+          "value": "04",
+          "customField01": "90000"
+        }
+      ]
+    },
+    "rules": [
+      {
+        "required": true,
+        "message": "Please select ตำบล",
+        "trigger": "change"
+      }
+    ],
+    "effects": [
+      {
+        "target": "postalCode",
+        "actionType": "SET_VALUE",
+        "valueField": "customField01",
+        "trigger": "change"
+      }
+    ]
+  },
+  {
+    "code": "postalCode",
+    "defaultValue": null,
+    "is": "input",
+    "label": {
+      "text": "รหัสไปรษณีย์",
+      "position": "left"
+    },
+    "props": {
+      "placeholder": "Enter postal code",
+      "desc": null
+    },
+    "rules": [
+      {
+        "required": true,
+        "message": "Please input postal code",
+        "trigger": "change"
+      }
+    ]
+  }
+]
