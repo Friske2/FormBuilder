@@ -1,0 +1,10 @@
+{
+    "agent": {
+        "requiredFields": ["name", "email","region","resource", "type","date1", "time1"],
+        "advancedValidations": []
+    },
+    "admin": {
+        "requiredFields": ["name", "email"],
+        "advancedValidations": []
+    }
+}

@@ -13,7 +13,7 @@
         },
         "rules": [
             {
-                "required": true,
+                "required": false,
                 "message": "Please input Activity name",
                 "trigger": "change"
             },
@@ -74,7 +74,7 @@
         },
         "rules": [
             {
-                "required": true,
+                "required": false,
                 "message": "Please select Activity zone",
                 "trigger": "change"
             }
@@ -102,7 +102,7 @@
         },
         "rules": [
             {
-                "required": true,
+                "required": false,
                 "message": "Please select activity resource",
                 "trigger": "change"
             }
@@ -139,7 +139,7 @@
         "rules": [
             {
                 "type": "array",
-                "required": true,
+                "required": false,
                 "message": "Please select at least one activity type",
                 "trigger": "change"
             }
@@ -152,7 +152,7 @@
         },
         "rules": [
             {
-                "required": true,
+                "required": false,
                 "message": ""
             }
         ],
@@ -185,7 +185,7 @@
                 "rules": [
                     {
                         "type": "date",
-                        "required": true,
+                        "required": false,
                         "message": "Please pick a date",
                         "trigger": "change"
                     }
@@ -221,7 +221,7 @@
                 "rules": [
                     {
                         "type": "string",
-                        "required": true,
+                        "required": false,
                         "message": "Please pick a time",
                         "trigger": "change"
                     }
@@ -240,7 +240,7 @@
         "props": {},
         "rules": [
             {
-                "required": true,
+                "required": false,
                 "message": "Please input activity form",
                 "trigger": "blur"
             }
@@ -264,7 +264,7 @@
         },
         "rules": [
             {
-                "required": true,
+                "required": false,
                 "message": "Please input activity form",
                 "trigger": "change"
             }

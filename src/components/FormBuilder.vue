@@ -53,7 +53,7 @@
 import { initStructure } from "./Form";
 import { reactive, ref } from "vue";
 import FieldItem from "./FieldItem.vue";
-import exampleForm from "../mocks/addressForm.json";
+import exampleForm from "../mocks/exampleForm.json";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
 import type { Schema, FormType } from "../types/Schema";
