@@ -65,6 +65,7 @@ import FieldDiv from "./fields/FieldDiv.vue";
 import useFieldEffects from "./hooks/useFieldEffect";
 import useSubmit from "./hooks/useSubmit";
 import useConfigForm from "./hooks/useConfigForm";
+type ElFormInstance = InstanceType<typeof import("element-plus")["ElForm"]>;
 
 const fields = reactive<Schema>(exampleForm);
 const profileId = ref<string>("agent");
@@ -75,9 +76,7 @@ const form = reactive<FormType>(initStructure(fields));
 const config = useConfigForm();
 
 useFieldEffects(warpField, form);
-const warpElForm = ref<InstanceType<
-  typeof import("element-plus")["ElForm"]
-> | null>(null);
+const warpElForm = ref<ElFormInstance | null>(null);
 
 const { submit } = useSubmit(warpElForm, fields, form);
 
