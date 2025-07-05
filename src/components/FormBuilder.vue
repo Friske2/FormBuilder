@@ -57,14 +57,20 @@ import exampleForm from "../mocks/exampleForm.json";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
 import type { Schema, FormType } from "../types/Schema";
+import type { ValidationSchema,FormValidationConfig } from "../types/Validate";
+import exampleValidate from '../mocks/exampleValidate.json'
 import ShowIfWrapper from "./ShowIfWrapper.vue";
 import useValiatator from "./hooks/useValiatator";
 import FieldDiv from "./fields/FieldDiv.vue";
 import useFieldEffects from "./hooks/useFieldEffect";
 import useConfigForm from "./hooks/useConfigForm";
 import useSubmit from "./hooks/useSubmit";
+
 const fields = reactive<Schema>(exampleForm);
-const warpField = useValiatator(fields);
+const profileId = ref<string>("agent");
+const validateProfile = ref<ValidationSchema>(exampleValidate).value[profileId.value];
+const validateConfig = reactive<FormValidationConfig>(validateProfile);
+const warpField = useValiatator(fields, validateConfig);
 const form = reactive<FormType>(initStructure(fields));
 useFieldEffects(fields, form);
 const config = useConfigForm();
