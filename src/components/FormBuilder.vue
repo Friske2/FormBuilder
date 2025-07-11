@@ -77,8 +77,8 @@ const config = useConfigForm();
 
 useFieldEffects(warpField, form);
 const warpElForm = ref<ElFormInstance | null>(null);
-
-const { submit } = useSubmit(warpElForm, fields, form);
+const { advancedValidations } = validateConfig
+const { submit } = useSubmit(warpElForm, fields, form, advancedValidations);
 
 // Expose the submit function to the parent component via ref
 defineExpose({

@@ -1,7 +1,15 @@
 {
     "agent": {
         "requiredFields": ["name", "email","region","resource", "type","date1", "time1"],
-        "advancedValidations": []
+        "advancedValidations": [
+            {
+                "fields": [],
+                "validator": "jsonata",
+                "expression": "isAccepted = true",
+                "args": [],
+                "message": "Please accept the agent"
+            }
+        ]
     },
     "admin": {
         "requiredFields": ["name", "email"],

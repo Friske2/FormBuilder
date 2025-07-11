@@ -4,23 +4,29 @@
 export interface BaseValidation {
   fields: string[];
   validator: string;
+  expression?: string; // Optional expression for JSONata validation
   args?: any[];
   message: string;
 }
 
 // Specific validation types
 export interface SumEqualsValidation extends BaseValidation {
-  validator: 'sumEquals';
+  validator: string;
   args: [number]; // The target sum value
 }
 
 export interface LessThanValidation extends BaseValidation {
-  validator: 'lessThan';
+  validator: string;
   args?: never; // No args needed for date comparison
 }
 
+export interface JsonataValidation extends BaseValidation {
+  validator: string;
+  expression: string; // JSONata expression for validation
+}
+
 // Union type for all validation types
-export type AdvancedValidation = SumEqualsValidation | LessThanValidation;
+export type AdvancedValidation = SumEqualsValidation | LessThanValidation | JsonataValidation;
 
 // Form validation configuration
 export interface FormValidationConfig {
