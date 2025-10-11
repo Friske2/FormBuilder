@@ -57,8 +57,8 @@ import exampleForm from "../mocks/exampleForm.json";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
 import type { Schema, FormType } from "../types/Schema";
-import type { ValidationSchema,FormValidationConfig } from "../types/Validate";
-import exampleValidate from '../mocks/exampleValidate.json'
+import type { ValidationSchema, FormValidationConfig } from "../types/Validate";
+import exampleValidate from "../mocks/exampleValidate.json";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
 import useValiatator from "./hooks/useValiatator";
 import FieldDiv from "./fields/FieldDiv.vue";
@@ -69,7 +69,8 @@ type ElFormInstance = InstanceType<typeof import("element-plus")["ElForm"]>;
 
 const fields = reactive<Schema>(exampleForm);
 const profileId = ref<string>("agent");
-const validateProfile = ref<ValidationSchema>(exampleValidate).value[profileId.value];
+const validateProfile =
+  ref<ValidationSchema>(exampleValidate).value[profileId.value];
 const validateConfig = reactive<FormValidationConfig>(validateProfile);
 const warpField = useValiatator(fields, validateConfig);
 const form = reactive<FormType>(initStructure(fields));
@@ -77,7 +78,7 @@ const config = useConfigForm();
 
 useFieldEffects(warpField, form);
 const warpElForm = ref<ElFormInstance | null>(null);
-const { advancedValidations } = validateConfig
+const { advancedValidations } = validateConfig;
 const { submit } = useSubmit(warpElForm, fields, form, advancedValidations);
 
 // Expose the submit function to the parent component via ref
