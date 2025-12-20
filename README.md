@@ -79,4 +79,4 @@ Feel free to contribute or provide feedback to improve the form builder applicat
 
 ### 📁 Example Schema
 
-See [`/src/mock/exampleForm.json`](./src/mock/exampleForm.json) for a working schema example.
+See [`/src/mocks/exampleForm.json`](./src/mocks/exampleForm.json) for a working schema example.
