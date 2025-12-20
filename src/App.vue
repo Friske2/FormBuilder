@@ -24,10 +24,11 @@ const elForm = ref<FormBuilderRef | null>(null);
 const submitForm = async () => {
   if (!elForm.value) return;
   const result = await elForm?.value.submit();
-  if (result) {
+  console.log('Submit result:', result);
+  if (result.isSuccess) {
     console.log('Form submitted successfully:', result);
   } else {
-    console.error('Form submission failed');
+    console.error('Form submission failed:', result.errorMessages);
   }
 };
 </script>
