@@ -2,7 +2,7 @@
     {
         "code": "cardHolderName",
         "is": "input",
-        "defaultValue": "PARNUPAT JANSIRI",
+        "defaultValue": "TEST USER",
         "label": {
             "text": "Card Holder Name",
             "position": "left"
