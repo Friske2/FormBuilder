@@ -1,0 +1,37 @@
+# Source files
+src/
+public/
+
+# Config files
+*.config.ts
+tsconfig*.json
+.vscode/
+.git/
+.gitignore
+
+# Development files
+node_modules/
+*.log
+.DS_Store
+
+# Test and mock files
+**/*.spec.ts
+**/*.test.ts
+**/__tests__/
+src/mocks/
+
+# Build artifacts (keep dist/)
+*.tsbuildinfo
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Documentation source (keep compiled docs if any)
+docs/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
