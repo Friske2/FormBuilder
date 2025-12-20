@@ -2,6 +2,11 @@ import { type Ref } from "vue";
 import { getHiddenFields } from '../Form';
 import type { AdvancedValidation } from "../../types/Validate";
 import { advanceValidator } from "../../utils/advanceValidator";
+interface SubmitResult {
+  isSuccess: boolean;
+  errorMessages: string | null;
+  result?: any;
+}
 export default function useSubmit(
   warpElForm: Ref<any>,
   fields: any,
@@ -9,11 +14,13 @@ export default function useSubmit(
   advancedValidations: AdvancedValidation[]
   
 ) {
-  const handleAdvanceValidate = async () => {
+  const handleAdvanceValidate = async (): Promise<SubmitResult> => {
+    const response: SubmitResult = { isSuccess: true, errorMessages: null, result: null };
     try {
       // Perform advanced validations
       for (const validation of advancedValidations) {
         const { message, validator, expression } = validation;
+      
         if (validator === 'jsonata' && expression) {
           const payload = JSON.stringify(form);
           const isValid = await advanceValidator(payload, expression);
@@ -22,17 +29,21 @@ export default function useSubmit(
           console.log("payload :", payload);
           if (!isValid) {
             console.error(message);
-            return false; // Validation failed
+            response.isSuccess = false;
+            response.errorMessages = message;
+            return response; // Validation failed
           }
         }
       }
-      return true; // All validations passed
+      return { isSuccess: true, errorMessages: null }; // All validations passed
     } catch (error) {
       console.error("Advanced validation error:", error);
-      return false; // Return false if there's an error in validation
+      response.isSuccess = false;
+      response.errorMessages = "Validation error";
+      return response; // Return false if there's an error in validation
     }
   }
-  const submit = async () => {
+  const submit = async (): Promise<SubmitResult> => {
     try {
       let payload = null;
       await warpElForm.value?.validate((valid: boolean) => {
@@ -50,14 +61,15 @@ export default function useSubmit(
           console.error("Form validation failed");
         }
       });
-      const isValid = await handleAdvanceValidate();
-      if(!isValid) {
+      const {isSuccess, errorMessages} = await handleAdvanceValidate();
+      if(!isSuccess) {
         console.error("Advanced validation failed");
-        return null; // Return null if advanced validation fails
+        return { isSuccess: false, errorMessages, result: null }; // Return null if advanced validation fails
       }
-      return payload;
+      return { isSuccess: true, errorMessages: null, result: payload };
     } catch (error) {
       console.error("Error during form submission:", error);
+      return { isSuccess: false, errorMessages: "Error during form submission", result: null };
     }
   };
   return { submit };
