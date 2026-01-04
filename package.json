@@ -1,6 +1,6 @@
 {
   "name": "@friske2/form-builder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "A Vue 3 dynamic form builder component with Element Plus",
   "author": "",
@@ -44,7 +44,8 @@
     "build": "vue-tsc -b && vite build",
     "build:lib": "vue-tsc -b && vite build --config vite.lib.config.ts",
     "preview": "vite preview",
-    "prepublishOnly": "npm run build:lib"
+    "prepublishOnly": "npm run build:lib",
+    "prepare": "npm run build:lib"
   },
   "peerDependencies": {
     "vue": "^3.5.0"
