@@ -1,13 +1,12 @@
 <template>
-    <component
-      :is="mapComponent(field)"
-      :value="props.value"
-      @update:value="$emit('update:value', $event)"
-      :props="props.field.props"
-    />
+  <component
+    :is="mapComponent(field)"
+    :value="props.value"
+    @update:value="$emit('update:value', $event)"
+    :props="props.field.props"
+  />
 </template>
 <script lang="ts" setup>
-import { defineProps } from "vue";
 import FieldInput from "./fields/FieldInput.vue";
 import FieldCustomInput from "./fields/FieldCustomInput.vue";
 import FieldSelect from "./fields/FieldSelect.vue";
@@ -18,7 +17,7 @@ import FieldTimeSelect from "./fields/FieldTimeSelect.vue";
 import FieldSwitch from "./fields/FieldSwitch.vue";
 import FieldCheckbox from "./fields/FieldCheckbox.vue";
 import FieldText from "./fields/FieldText.vue";
-import { EmailWrapper } from './wrappers/withEmailWrapper'
+import { EmailWrapper } from "./wrappers/withEmailWrapper";
 interface FieldItemProp {
   value: any;
   field: {
@@ -26,7 +25,7 @@ interface FieldItemProp {
     is: string;
     props?: Record<string, any>;
   };
-};
+}
 
 const props = defineProps<FieldItemProp>();
 const mapComponent = (field: any) => {
@@ -41,7 +40,7 @@ const mapComponent = (field: any) => {
     "radio-group": FieldRadioGroup,
     "date-picker": FieldDatePicker,
     "time-select": FieldTimeSelect,
-    text : FieldText,
+    text: FieldText,
   };
 
   return map[field.is] || field.is;
