@@ -7,7 +7,6 @@
   />
 </template>
 <script lang="ts" setup>
-import { defineProps } from "vue";
 import FieldInput from "./fields/FieldInput.vue";
 import FieldCustomInput from "./fields/FieldCustomInput.vue";
 import FieldSelect from "./fields/FieldSelect.vue";

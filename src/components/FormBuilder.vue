@@ -28,7 +28,6 @@
 import { initStructure } from "./Form"
 import { reactive, ref } from "vue";
 import FieldItem from "./FieldItem.vue";
-import exampleForm from "../mocks/creditCardForm.json";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
 import type { Schema, FormConfig, FormType } from "../types/Schema";
@@ -37,7 +36,8 @@ import { getHiddenFields } from '../components/Form'
 import useValiatator from "./hooks/useValiatator"
 import FieldDiv from "./fields/FieldDiv.vue";
 
-const fields = reactive<Schema>(exampleForm);
+const props = defineProps<{ schema: Schema }>();
+const fields = reactive<Schema>(props.schema);
 const warpField = useValiatator(fields);
 const form = reactive<FormType>(initStructure(fields));
 
