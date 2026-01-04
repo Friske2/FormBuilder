@@ -2,6 +2,10 @@
 
 A dynamic, schema-based form builder powered by Vue 3 + TypeScript. Designed for flexible UI generation, runtime validation, and powerful conditional logic support.
 
+### 🌐 Demo
+
+See the live demo app: [Form Builder Demo](https://form-builder-ui-asuk-hitf2l61d-friske2s-projects.vercel.app/)
+
 ## Getting Started
 
 To get started with this project, clone the repository and install the dependencies:
