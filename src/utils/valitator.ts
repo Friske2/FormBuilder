@@ -7,15 +7,16 @@ export function validateEmail(email: string): boolean {
     return emailRegex.test(email);
 }
 export function validateEmailWithForm(rule: any, value: any, callback: Function) {
-    // const value = ruleFormRef.value;
     const isRequired = rule.required;
     if(!isRequired && !value) return callback();
-    if (!value) { 
-        callback(new Error('Email is required'));
-    } else if (!validateEmail(value)) {
-        callback(new Error('Invalid email format'));
+    if (value) {
+        if (validateEmail(value)) {
+            callback();
+        } else {
+            callback(new Error('Invalid email format'));
+        }
     } else {
-        callback();
+        callback(new Error('Email is required'));
     }
 }
 

@@ -11,7 +11,7 @@ const mapFunctionRule: MapFunctionRule = {
 
 const useValidator = (schema: Schema) => {
   const warpField = schema.map((fields) => {
-    fields.rules.map((rule) => {
+    fields.rules.forEach((rule) => {
       if (typeof rule.validator == "string") {
         const funcName = rule.validator;
         if (mapFunctionRule.hasOwnProperty(funcName)) {
@@ -20,7 +20,6 @@ const useValidator = (schema: Schema) => {
           rule.validator = nonValidate;
         }
       }
-      return rule;
     });
     return fields;
   });

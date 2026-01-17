@@ -45,26 +45,30 @@ function getAllChildCodes(children: SchemaItem[]): string[] {
   return codes
 }
 
+function evaluateCondition(operator: string, fieldValue: any, expectedValue: any): boolean {
+  switch (operator) {
+    case '==': return fieldValue === expectedValue
+    case '!=': return fieldValue !== expectedValue
+    case '>': return fieldValue > expectedValue
+    case '<': return fieldValue < expectedValue
+    case '>=': return fieldValue >= expectedValue
+    case '<=': return fieldValue <= expectedValue
+    case 'includes':
+      if (Array.isArray(fieldValue)) return fieldValue.includes(expectedValue)
+      return false
+    case '!includes':
+      if (Array.isArray(fieldValue)) return !fieldValue.includes(expectedValue)
+      return false
+    default:
+      return false
+  }
+}
+
 export function evaluateShowIf(expr: ShowIfExpression, formData: Record<string, any>): boolean {
   // ✅ Base case: single condition
   if ('field' in expr && 'operator' in expr) {
     const fieldValue = expr.field ? formData[expr.field] : undefined
-    switch (expr.operator) {
-      case '==': return fieldValue === expr.value
-      case '!=': return fieldValue !== expr.value
-      case '>': return fieldValue > expr.value
-      case '<': return fieldValue < expr.value
-      case '>=': return fieldValue >= expr.value
-      case '<=': return fieldValue <= expr.value
-      case 'includes':
-        if (Array.isArray(fieldValue)) return fieldValue.includes(expr.value)
-        return false
-      case '!includes':
-        if (Array.isArray(fieldValue)) return !fieldValue.includes(expr.value)
-        return false
-      default:
-        return false
-    }
+    return evaluateCondition(expr.operator || '', fieldValue, expr.value)
   }
 
   // ✅ Recursive group evaluation

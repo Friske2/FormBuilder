@@ -11,7 +11,7 @@ export interface Rule {
     min?: number;
     max?: number;
     type?: string;
-    validator?: string | FunctionValidator | null | undefined;
+    validator?: string | FunctionValidator | null;
 }
 
 export interface Option {
@@ -21,7 +21,7 @@ export interface Option {
 
 export interface Props {
     placeholder?: string;
-    desc?: string | null | undefined;
+    desc?: string | null;
     filterable?: boolean;
     clearable?: boolean;
     options?: Option[];

@@ -1,17 +1,46 @@
 import { type Directive } from 'vue'
 import Cleave from 'cleave.js'
+
+const cleaveInstances = new WeakMap<HTMLElement, Cleave>()
+
 const cleaveRegister:Directive = {
-    updated(el, binding) {
-        const elInput = el.children[0].children[0] as HTMLInputElement;
-         if(!elInput) {
+    mounted(el, binding) {
+        const elInput = el.children[0]?.children[0] as HTMLInputElement;
+        if(!elInput) {
             throw new Error('Cleave directive requires an input element as a child');
-         }
-        //  console.log('cleave directive updated', el, binding);
-         if(!binding.value) {
-            // throw new Error('Cleave directive requires a binding value');
+        }
+        if(!binding.value) {
             return;
         }
-        new Cleave(elInput, binding.value)
+        const cleaveInstance = new Cleave(elInput, binding.value)
+        cleaveInstances.set(el, cleaveInstance)
+    },
+    updated(el, binding) {
+        const elInput = el.children[0]?.children[0] as HTMLInputElement;
+        if(!elInput) {
+            throw new Error('Cleave directive requires an input element as a child');
+        }
+        if(!binding.value) {
+            const existingInstance = cleaveInstances.get(el)
+            if(existingInstance) {
+                existingInstance.destroy()
+                cleaveInstances.delete(el)
+            }
+            return;
+        }
+        const existingInstance = cleaveInstances.get(el)
+        if(existingInstance) {
+            existingInstance.destroy()
+        }
+        const cleaveInstance = new Cleave(elInput, binding.value)
+        cleaveInstances.set(el, cleaveInstance)
+    },
+    unmounted(el) {
+        const existingInstance = cleaveInstances.get(el)
+        if(existingInstance) {
+            existingInstance.destroy()
+            cleaveInstances.delete(el)
+        }
     },
 }
 

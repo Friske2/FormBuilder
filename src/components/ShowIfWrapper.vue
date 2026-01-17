@@ -23,7 +23,7 @@ const props = defineProps<{
 
 const isVisible = computed(() => {
     if (!props.showIf) return true
-    var isShow = evaluateShowIf(props.showIf, props.formData)
+    const isShow = evaluateShowIf(props.showIf, props.formData)
     return isShow
 })
 

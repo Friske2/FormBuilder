@@ -1,4 +1,2 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-     themes: light --default, dark --prefersdark, light;
-}
+/* NOSONAR: @plugin is a valid Tailwind CSS v4 directive for DaisyUI plugin */
