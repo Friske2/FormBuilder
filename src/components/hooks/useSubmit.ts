@@ -3,7 +3,7 @@ import { getHiddenFields } from '../Form';
 import type { AdvancedValidation } from "../../types/Validate";
 import { advanceValidator } from "../../utils/advanceValidator";
 
-interface SubmitResult {
+export interface SubmitResult {
   isSuccess: boolean;
   errorMessages: string | null;
   result?: any;
