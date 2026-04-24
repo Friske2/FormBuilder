@@ -53,7 +53,6 @@
 import { initStructure } from "./Form";
 import { reactive, ref } from "vue";
 import FieldItem from "./FieldItem.vue";
-import exampleForm from "../mocks/exampleForm.json";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
 import type { Schema, FormType } from "../types/Schema";
@@ -65,9 +64,9 @@ import FieldDiv from "./fields/FieldDiv.vue";
 import useFieldEffects from "./hooks/useFieldEffect";
 import useSubmit from "./hooks/useSubmit";
 import useConfigForm from "./hooks/useConfigForm";
-type ElFormInstance = InstanceType<typeof import("element-plus")["ElForm"]>;
-
-const fields = reactive<Schema>(exampleForm);
+type ElFormInstance = InstanceType<(typeof import("element-plus"))["ElForm"]>;
+const props = defineProps<{ schema: Schema }>();
+const fields = reactive<Schema>(props.schema);
 const profileId = ref<string>("agent");
 const validateProfile =
   ref<ValidationSchema>(exampleValidate).value[profileId.value];
