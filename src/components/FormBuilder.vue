@@ -57,7 +57,6 @@ import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
 import type { Schema, FormType } from "../types/Schema";
 import type { ValidationSchema, FormValidationConfig } from "../types/Validate";
-import exampleValidate from "../mocks/exampleValidate.json";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
 import useValiatator from "./hooks/useValiatator";
 import FieldDiv from "./fields/FieldDiv.vue";
@@ -65,11 +64,16 @@ import useFieldEffects from "./hooks/useFieldEffect";
 import useSubmit from "./hooks/useSubmit";
 import useConfigForm from "./hooks/useConfigForm";
 type ElFormInstance = InstanceType<(typeof import("element-plus"))["ElForm"]>;
-const props = defineProps<{ schema: Schema }>();
+const props = defineProps<{
+  schema: Schema;
+  validate: ValidationSchema;
+  profileId: string;
+}>();
 const fields = reactive<Schema>(props.schema);
-const profileId = ref<string>("agent");
-const validateProfile =
-  ref<ValidationSchema>(exampleValidate).value[profileId.value];
+const profileId = ref<string>(props.profileId);
+const validateProfile = ref<ValidationSchema>(props.validate).value[
+  profileId.value
+];
 const validateConfig = reactive<FormValidationConfig>(validateProfile);
 const warpField = useValiatator(fields, validateConfig);
 const form = reactive<FormType>(initStructure(fields));
