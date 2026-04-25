@@ -14,7 +14,9 @@
       ref="elForm"
       :schema="fields"
       :validate="exampleValidate"
+      :onFormChange="(form) => console.log('Form changed:', form)"
       profileId="agent"
+      v-model="form"
     />
     <div class="flex justify-center">
       <el-button type="primary" @click="submitForm">Submit</el-button>
@@ -31,6 +33,19 @@ interface FormBuilderRef {
   submit: () => Promise<any>;
 }
 const fields = reactive<Schema>(exampleForm);
+const form = ref({
+  name: "test",
+  email: "parnupat.j@gmail.com",
+  region: "shanghai",
+  resource: "Sponsorship",
+  type: [1],
+  date1: "2026-04-25",
+  time1: "01:00",
+  isActive: true,
+  desc: "PP",
+  isAccepted: true,
+  text: null,
+});
 const elForm = ref<FormBuilderRef | null>(null);
 const submitForm = async () => {
   if (!elForm.value) return;

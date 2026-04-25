@@ -51,7 +51,7 @@
 </template>
 <script lang="ts" setup>
 import { initStructure } from "./Form";
-import { reactive, ref } from "vue";
+import { reactive, ref, watch } from "vue";
 import FieldItem from "./FieldItem.vue";
 import FieldCol from "./FieldCol.vue";
 import FieldSpan from "./fields/FieldSpan.vue";
@@ -68,7 +68,10 @@ const props = defineProps<{
   schema: Schema;
   validate: ValidationSchema;
   profileId: string;
+  modelValue?: FormType;
+  onFormChange?: (form: FormType) => void;
 }>();
+const emit = defineEmits<{ "update:modelValue": [form: FormType] }>();
 const fields = reactive<Schema>(props.schema);
 const profileId = ref<string>(props.profileId);
 const validateProfile = ref<ValidationSchema>(props.validate).value[
@@ -77,8 +80,18 @@ const validateProfile = ref<ValidationSchema>(props.validate).value[
 const validateConfig = reactive<FormValidationConfig>(validateProfile);
 const warpField = useValiatator(fields, validateConfig);
 const form = reactive<FormType>(initStructure(fields));
+if (props.modelValue) {
+  Object.assign(form, props.modelValue);
+}
 const config = useConfigForm();
-
+watch(
+  form,
+  () => {
+    emit("update:modelValue", form);
+    props.onFormChange?.(form);
+  },
+  { deep: true },
+);
 useFieldEffects(warpField, form);
 const warpElForm = ref<ElFormInstance | null>(null);
 const { advancedValidations } = validateConfig;
