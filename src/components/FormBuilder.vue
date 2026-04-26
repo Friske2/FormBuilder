@@ -83,6 +83,7 @@ const form = reactive<FormType>(initStructure(fields));
 if (props.modelValue) {
   Object.assign(form, props.modelValue);
 }
+const initialFormState = { ...form };
 const config = useConfigForm();
 watch(
   form,
@@ -95,10 +96,17 @@ watch(
 useFieldEffects(warpField, form);
 const warpElForm = ref<ElFormInstance | null>(null);
 const { advancedValidations } = validateConfig;
-const { submit } = useSubmit(warpElForm, fields, form, advancedValidations);
+const { submit, reset } = useSubmit(
+  warpElForm,
+  fields,
+  form,
+  initialFormState,
+  advancedValidations,
+);
 
 // Expose the submit function to the parent component via ref
 defineExpose({
   submit,
+  reset,
 });
 </script>

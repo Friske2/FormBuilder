@@ -9,7 +9,7 @@
   <div style="display: block">{{ props.props.desc }}</div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed } from "vue";
 
 interface FieldDatePickerProp {
   value: string;
@@ -19,11 +19,10 @@ interface FieldDatePickerProp {
 }
 
 const props = defineProps<FieldDatePickerProp>();
-
-const dateValue = ref("");
 const emit = defineEmits(["update:value"]);
 
-if (props.value) {
-  dateValue.value = props.value;
-}
+const dateValue = computed({
+  get: () => props.value ?? "",
+  set: (val) => emit("update:value", val),
+});
 </script>

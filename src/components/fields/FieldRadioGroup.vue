@@ -10,11 +10,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref,onBeforeUpdate } from "vue";
-onBeforeUpdate(() => {
-  // @change="emit('update:value', checkbox)"
-  emit("update:value", radio.value);
-})
+import { computed } from "vue";
+
 interface FieldRadioGroupProp {
   value: string | null | number;
   props: {
@@ -23,11 +20,10 @@ interface FieldRadioGroupProp {
 }
 
 const props = defineProps<FieldRadioGroupProp>();
-
-const radio = ref();
 const emit = defineEmits(["update:value"]);
 
-if (props.value) {
-  radio.value = props.value;
-}
+const radio = computed({
+  get: () => props.value ?? null,
+  set: (val) => emit("update:value", val),
+});
 </script>

@@ -6,7 +6,7 @@
   />
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 interface FieldTimeSelectProp {
   value: string | null;
@@ -16,11 +16,16 @@ interface FieldTimeSelectProp {
 }
 
 const props = defineProps<FieldTimeSelectProp>();
-
-const timeValue = ref();
 const emit = defineEmits(["update:value"]);
 
-if (props.value) {
-  timeValue.value = props.value;
-}
+const timeValue = ref(props.value ?? null);
+
+watch(
+  () => props.value,
+  (newVal) => {
+    if (newVal !== timeValue.value) {
+      timeValue.value = newVal ?? null;
+    }
+  }
+);
 </script>

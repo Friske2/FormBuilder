@@ -11,12 +11,8 @@
 
 <script lang="ts" setup>
 
-import { ref, onBeforeUpdate } from "vue";
+import { computed } from "vue";
 
-onBeforeUpdate(() => {
-  // @change="emit('update:value', checkbox)"
-  emit("update:value", checkbox.value);
-})
 interface FieldCheckboxGroupProp {
   value: string[] | number[] | null;
   props: {
@@ -25,11 +21,10 @@ interface FieldCheckboxGroupProp {
 }
 
 const props = defineProps<FieldCheckboxGroupProp>();
-
-const checkbox = ref<(string | number)[]>([]);
 const emit = defineEmits(["update:value"]);
 
-if (props.value && Array.isArray(props.value)) {
-  checkbox.value = props.value;
-}
+const checkbox = computed({
+  get: () => (Array.isArray(props.value) ? props.value : []),
+  set: (val) => emit("update:value", val),
+});
 </script>

@@ -10,6 +10,7 @@
         but you can use the <code>submit</code> method to get the form data.
       </div>
     </div>
+    {{ form }}
     <FormBuilder
       ref="elForm"
       :schema="fields"
@@ -20,6 +21,7 @@
     />
     <div class="flex justify-center">
       <el-button type="primary" @click="submitForm">Submit</el-button>
+      <el-button type="primary" @click="resetForm">Reset</el-button>
     </div>
   </div>
 </template>
@@ -31,22 +33,28 @@ import FormBuilder from "./components/FormBuilder.vue";
 import exampleValidate from "./mocks/exampleValidate.json";
 interface FormBuilderRef {
   submit: () => Promise<any>;
+  reset: () => void;
 }
 const fields = reactive<Schema>(exampleForm);
 const form = ref({
   name: "test",
-  email: "parnupat.j@gmail.com",
-  region: "shanghai",
+  email: "example@example.com",
+  region: "beijing",
   resource: "Sponsorship",
-  type: [1],
-  date1: "2026-04-25",
-  time1: "01:00",
+  type: [1, 2],
+  date1: "2026-01-01",
+  time1: "12:00",
   isActive: true,
-  desc: "PP",
+  desc: "This is a description",
   isAccepted: true,
-  text: null,
+  text: "This is a text",
 });
 const elForm = ref<FormBuilderRef | null>(null);
+const resetForm = () => {
+  console.log("Reset form", elForm.value);
+  if (!elForm.value) return;
+  elForm.value.reset();
+};
 const submitForm = async () => {
   if (!elForm.value) return;
   const result = await elForm?.value.submit();

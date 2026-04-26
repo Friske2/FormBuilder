@@ -6,7 +6,7 @@
   />
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 interface FieldCheckboxProp {
   value: string | null | number | boolean;
@@ -16,11 +16,16 @@ interface FieldCheckboxProp {
 };
 
 const props = defineProps<FieldCheckboxProp>();
-
-const checkboxValue = ref();
 const emit = defineEmits(["update:value"]);
 
-if (props.value) {
-  checkboxValue.value = props.value;
-}
+const checkboxValue = ref(props.value ?? null);
+
+watch(
+  () => props.value,
+  (newVal) => {
+    if (newVal !== checkboxValue.value) {
+      checkboxValue.value = newVal ?? null;
+    }
+  }
+);
 </script>

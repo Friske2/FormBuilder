@@ -6,7 +6,7 @@
   />
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 interface FieldSwitchProp {
   value: string | null | number | boolean;
@@ -16,11 +16,16 @@ interface FieldSwitchProp {
 }
 
 const props = defineProps<FieldSwitchProp>();
-
-const switchValue = ref();
 const emit = defineEmits(["update:value"]);
 
-if (props.value) {
-  switchValue.value = props.value;
-}
+const switchValue = ref(props.value ?? null);
+
+watch(
+  () => props.value,
+  (newVal) => {
+    if (newVal !== switchValue.value) {
+      switchValue.value = newVal ?? null;
+    }
+  }
+);
 </script>
