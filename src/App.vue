@@ -10,7 +10,6 @@
         but you can use the <code>submit</code> method to get the form data.
       </div>
     </div>
-    {{ form }}
     <FormBuilder
       ref="elForm"
       :schema="fields"
