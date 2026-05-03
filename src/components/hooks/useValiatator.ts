@@ -9,12 +9,14 @@ const mapFunctionRule: MapFunctionRule = {
   validateEmailWithForm: validateEmailWithForm,
 };
 
-const useValidator = (schema: Schema, validateProfileSchema: FormValidationConfig) => {
-
+const useValidator = (
+  schema: Schema,
+  validateProfileSchema?: FormValidationConfig | null,
+) => {
   const warpField = schema.map((fields) => {
-    fields.rules.map((rule,index) => {
-      if(index == 0) {
-        const { requiredFields } = validateProfileSchema;
+    fields.rules.map((rule, index) => {
+      if (index == 0) {
+        const requiredFields = validateProfileSchema?.requiredFields ?? [];
         rule.required = requiredFields.includes(fields.code);
       }
       if (typeof rule.validator == "string") {

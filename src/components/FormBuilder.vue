@@ -66,18 +66,18 @@ import useConfigForm from "./hooks/useConfigForm";
 type ElFormInstance = InstanceType<(typeof import("element-plus"))["ElForm"]>;
 const props = defineProps<{
   schema: Schema;
-  validate: ValidationSchema;
-  profileId: string;
+  validate?: ValidationSchema | null;
+  profileId?: string | null;
   modelValue?: FormType;
   onFormChange?: (form: FormType) => void;
 }>();
 const emit = defineEmits<{ "update:modelValue": [form: FormType] }>();
 const fields = reactive<Schema>(props.schema);
-const profileId = ref<string>(props.profileId);
-const validateProfile = ref<ValidationSchema>(props.validate).value[
+const profileId = ref<string>(props.profileId ?? "");
+const validateProfile = ref<ValidationSchema>(props.validate ?? {}).value[
   profileId.value
 ];
-const validateConfig = reactive<FormValidationConfig>(validateProfile);
+const validateConfig = reactive<FormValidationConfig>(validateProfile ?? { requiredFields: [] });
 const warpField = useValiatator(fields, validateConfig);
 const form = reactive<FormType>(initStructure(fields));
 if (props.modelValue) {

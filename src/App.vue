@@ -13,9 +13,7 @@
     <FormBuilder
       ref="elForm"
       :schema="fields"
-      :validate="exampleValidate"
       :onFormChange="(form) => console.log('Form changed:', form)"
-      profileId="agent"
       v-model="form"
     />
     <div class="flex justify-center">
@@ -29,7 +27,7 @@ import { ref, reactive } from "vue";
 import type { Schema } from "./types/Schema";
 import exampleForm from "./mocks/exampleForm.json";
 import FormBuilder from "./components/FormBuilder.vue";
-import exampleValidate from "./mocks/exampleValidate.json";
+// import exampleValidate from "./mocks/exampleValidate.json";
 interface FormBuilderRef {
   submit: () => Promise<any>;
   reset: () => void;

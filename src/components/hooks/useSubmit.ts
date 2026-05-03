@@ -14,11 +14,10 @@ export default function useSubmit(
   fields: any,
   form: any,
   initialFormState: Record<string, any>,
-  advancedValidations: AdvancedValidation[],
+  advancedValidations?: AdvancedValidation[] | null,
 ) {
   const handleAdvanceValidate = async (): Promise<SubmitResult> => {
-    // Perform advanced validations
-    for (const validation of advancedValidations) {
+    for (const validation of advancedValidations ?? []) {
       const { message, validator, expression } = validation;
 
       if (validator === "jsonata" && expression) {
