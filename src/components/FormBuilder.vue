@@ -73,17 +73,15 @@ const props = defineProps<{
 }>();
 const emit = defineEmits<{ "update:modelValue": [form: FormType] }>();
 const fields = reactive<Schema>(props.schema);
-const profileId = ref<string>(props.profileId ?? "");
-const validateProfile = ref<ValidationSchema>(props.validate ?? {}).value[
-  profileId.value
-];
-const validateConfig = reactive<FormValidationConfig>(validateProfile ?? { requiredFields: [] });
+const validateConfig = reactive<FormValidationConfig>(
+  (props.validate ?? {})[props.profileId ?? ""] ?? { requiredFields: [] },
+);
 const warpField = useValiatator(fields, validateConfig);
 const form = reactive<FormType>(initStructure(fields));
 if (props.modelValue) {
   Object.assign(form, props.modelValue);
 }
-const initialFormState = { ...form };
+const initialFormState = JSON.parse(JSON.stringify(form));
 const config = useConfigForm();
 watch(
   form,
@@ -93,6 +91,16 @@ watch(
   },
   { deep: true },
 );
+watch(
+  () => [props.validate, props.profileId] as const,
+  ([newValidate, newProfileId]) => {
+    const newConfig = (newValidate ?? {})[newProfileId ?? ""] ?? { requiredFields: [] };
+    Object.assign(validateConfig, newConfig);
+    useValiatator(fields, validateConfig);
+  },
+  { deep: true },
+);
+
 useFieldEffects(warpField, form);
 const warpElForm = ref<ElFormInstance | null>(null);
 const { advancedValidations } = validateConfig;

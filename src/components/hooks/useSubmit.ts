@@ -36,13 +36,13 @@ export default function useSubmit(
     return { isSuccess: true, errorMessages: null };
   };
 
-  const reset = () => {
+  const reset = async () => {
     for (const key of Object.keys(form)) {
       form[key] = key in initialFormState ? initialFormState[key] : null;
     }
-    nextTick(() => nextTick(() => {
-      warpElForm.value?.clearValidate();
-    }));
+    await nextTick(); // wait for Vue to update the DOM
+    await nextTick(); // wait for Element Plus to run triggered validation before clearing
+    warpElForm.value?.clearValidate();
   };
 
   const submit = async (): Promise<SubmitResult> => {
