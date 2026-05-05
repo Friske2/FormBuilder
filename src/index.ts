@@ -29,7 +29,7 @@ import ShowIfWrapper from "./components/ShowIfWrapper.vue";
 
 // Hooks
 import useFieldInput from "./components/hooks/useFieldInput";
-import useValidator from "./components/hooks/useValiatator";
+import useValidator from "./components/hooks/useValidator";
 
 // Utilities
 import {

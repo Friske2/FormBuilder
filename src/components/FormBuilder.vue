@@ -4,7 +4,7 @@
       <show-if-wrapper :showIf="field.showIf" :formData="form">
         <el-form-item
           :rules="field.rules"
-          :label-postion="field.label.position"
+          :label-position="field.label.position"
           :label="field.label.text"
           :prop="field.code"
         >
@@ -37,8 +37,8 @@ import FieldColItem from "./FieldColItem.vue";
 import type { Schema, FormType } from "../types/Schema";
 import type { ValidationSchema, FormValidationConfig } from "../types/Validate";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
-import useValiatator from "./hooks/useValiatator";
-import useFieldEffects from "./hooks/useFieldEffect";
+import useValidator from "./hooks/useValidator";
+import useFieldEffects from "./hooks/useFieldEffects";
 import useSubmit from "./hooks/useSubmit";
 import useConfigForm from "./hooks/useConfigForm";
 type ElFormInstance = InstanceType<(typeof import("element-plus"))["ElForm"]>;
@@ -54,7 +54,7 @@ const fields = reactive<Schema>(props.schema);
 const validateConfig = reactive<FormValidationConfig>(
   (props.validate ?? {})[props.profileId ?? ""] ?? { requiredFields: [] },
 );
-const warpField = useValiatator(fields, validateConfig);
+const warpField = useValidator(fields, validateConfig);
 const form = reactive<FormType>(initStructure(fields));
 if (props.modelValue) {
   Object.assign(form, props.modelValue);
@@ -76,7 +76,7 @@ watch(
       requiredFields: [],
     };
     Object.assign(validateConfig, newConfig);
-    useValiatator(fields, validateConfig);
+    useValidator(fields, validateConfig);
   },
   { deep: true },
 );
