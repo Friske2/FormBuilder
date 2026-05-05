@@ -8,33 +8,13 @@
           :label="field.label.text"
           :prop="field.code"
         >
-          <!-- render nasted field under col -->
+          <!-- render nested field under col -->
           <template v-if="field.is == 'col'">
-            <field-div :props="field.props">
-              <field-col
-                v-for="col in field.children"
-                :key="col.code"
-                :span="col.span"
-              >
-                <field-span
-                  :style="col.props.style"
-                  v-if="col.is == 'span'"
-                  :content="col.props.content"
-                />
-                <el-form-item
-                  v-else
-                  :rules="col.rules"
-                  :prop="col.code"
-                  :key="col.code"
-                >
-                  <field-item
-                    :value="form[col.code]"
-                    @update:value="form[col.code] = $event"
-                    :field="col"
-                  />
-                </el-form-item>
-              </field-col>
-            </field-div>
+            <field-col-item
+              :field="field"
+              :form="form"
+              @update:form="(code, value) => (form[code] = value)"
+            />
           </template>
           <!-- render field item -->
           <template v-else>
@@ -53,13 +33,11 @@
 import { initStructure } from "./Form";
 import { reactive, ref, watch } from "vue";
 import FieldItem from "./FieldItem.vue";
-import FieldCol from "./FieldCol.vue";
-import FieldSpan from "./fields/FieldSpan.vue";
+import FieldColItem from "./FieldColItem.vue";
 import type { Schema, FormType } from "../types/Schema";
 import type { ValidationSchema, FormValidationConfig } from "../types/Validate";
 import ShowIfWrapper from "./ShowIfWrapper.vue";
 import useValiatator from "./hooks/useValiatator";
-import FieldDiv from "./fields/FieldDiv.vue";
 import useFieldEffects from "./hooks/useFieldEffect";
 import useSubmit from "./hooks/useSubmit";
 import useConfigForm from "./hooks/useConfigForm";
@@ -94,7 +72,9 @@ watch(
 watch(
   () => [props.validate, props.profileId] as const,
   ([newValidate, newProfileId]) => {
-    const newConfig = (newValidate ?? {})[newProfileId ?? ""] ?? { requiredFields: [] };
+    const newConfig = (newValidate ?? {})[newProfileId ?? ""] ?? {
+      requiredFields: [],
+    };
     Object.assign(validateConfig, newConfig);
     useValiatator(fields, validateConfig);
   },
