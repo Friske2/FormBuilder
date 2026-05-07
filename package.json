@@ -1,15 +1,15 @@
 {
-  "name": "@friske2/form-builder",
+  "name": "@friske2/uniforms",
   "version": "1.1.3",
   "type": "module",
-  "description": "A Vue 3 dynamic form builder component with Element Plus",
+  "description": "A Vue 3 schema-driven uniform form library with Element Plus",
   "author": "",
   "license": "MIT",
   "keywords": [
     "vue",
     "vue3",
     "form",
-    "form-builder",
+    "uniforms",
     "element-plus",
     "dynamic-form",
     "json-schema"
@@ -22,16 +22,16 @@
     "url": ""
   },
   "homepage": "",
-  "main": "./dist/form-builder.umd.js",
-  "module": "./dist/form-builder.es.js",
+  "main": "./dist/uniforms.umd.js",
+  "module": "./dist/uniforms.es.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/form-builder.es.js",
-      "require": "./dist/form-builder.umd.js"
+      "import": "./dist/uniforms.es.js",
+      "require": "./dist/uniforms.umd.js"
     },
-    "./style.css": "./dist/form-builder.css"
+    "./style.css": "./dist/uniforms.css"
   },
   "files": [
     "dist"
