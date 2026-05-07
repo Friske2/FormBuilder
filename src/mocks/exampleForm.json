@@ -1,332 +1,326 @@
 [
-    {
-        "code": "name",
-        "defaultValue": null,
-        "is": "input",
-        "label": {
-            "text": "Activity name",
-            "position": "left"
-        },
-        "props": {
-            "placeholder": "Enter activity name",
-            "desc": "This is a description for the activity name field"
-        },
-        "rules": [
-            {
-                "required": false,
-                "message": "Please input Activity name",
-                "trigger": "change"
-            },
-            {
-                "min": 3,
-                "max": 20,
-                "message": "Length should be 3 to 5",
-                "trigger": "change"
-            }
-        ]
+  {
+    "code": "name",
+    "defaultValue": null,
+    "is": "input",
+    "label": {
+      "text": "Activity name",
+      "position": "left"
     },
-    {
-        "code": "email",
-        "defaultValue": null,
-        "is": "email",
-        "label": {
-            "text": "Email",
-            "position": "left"
-        },
-        "props": {
-            "placeholder": "Enter yor email",
-            "desc": null
-        },
-        "rules": [
-            {
-                "required": false,
-                "validator": "validateEmailWithForm",
-                "message": "Please input a valid email",
-                "trigger": [
-                    "blur",
-                    "change"
-                ]
-            }
-        ]
+    "props": {
+      "placeholder": "Enter activity name",
+      "desc": "This is a description for the activity name field"
     },
-    {
-        "code": "region",
-        "defaultValue": null,
-        "is": "select",
-        "label": {
-            "text": "Activity zone",
-            "position": "left"
-        },
-        "props": {
-            "placeholder": "Activity zone",
-            "filterable": true,
-            "clearable": true,
-            "options": [
-                {
-                    "label": "Zone one",
-                    "value": "shanghai"
-                },
-                {
-                    "label": "Zone two",
-                    "value": "beijing"
-                }
-            ]
-        },
-        "rules": [
-            {
-                "required": false,
-                "message": "Please select Activity zone",
-                "trigger": "change"
-            }
-        ]
+    "rules": [
+      {
+        "required": false,
+        "message": "Please input Activity name",
+        "trigger": "change"
+      },
+      {
+        "min": 3,
+        "max": 20,
+        "message": "Length should be 3 to 5",
+        "trigger": "change"
+      }
+    ]
+  },
+  {
+    "code": "email",
+    "defaultValue": null,
+    "is": "email",
+    "label": {
+      "text": "Email",
+      "position": "left"
     },
-    {
-        "code": "resource",
-        "defaultValue": "Venue",
-        "is": "radio-group",
-        "label": {
-            "text": "Resources",
-            "position": "left"
-        },
-        "props": {
-            "options": [
-                {
-                    "label": "Sponsorship",
-                    "value": "Sponsorship"
-                },
-                {
-                    "label": "Venue",
-                    "value": "Venue"
-                }
-            ]
-        },
-        "rules": [
-            {
-                "required": false,
-                "message": "Please select activity resource",
-                "trigger": "change"
-            }
-        ]
+    "props": {
+      "placeholder": "Enter yor email",
+      "desc": null
     },
-    {
-        "code": "type",
-        "defaultValue": [],
-        "is": "checkbox-group",
-        "label": {
-            "text": "Activity type",
-            "position": "left"
-        },
-        "props": {
-            "options": [
-                {
-                    "label": "Online activities",
-                    "value": 1
-                },
-                {
-                    "label": "Promotion activities",
-                    "value": 2
-                },
-                {
-                    "label": "Offline activities",
-                    "value": 3
-                },
-                {
-                    "label": "Simple brand exposure",
-                    "value": 4
-                }
-            ]
-        },
-        "rules": [
-            {
-                "type": "array",
-                "required": false,
-                "message": "Please select at least one activity type",
-                "trigger": "change"
-            }
-        ]
+    "rules": [
+      {
+        "required": false,
+        "validator": "validateEmailWithForm",
+        "message": "Please input a valid email",
+        "trigger": ["blur", "change"]
+      }
+    ]
+  },
+  {
+    "code": "region",
+    "defaultValue": null,
+    "is": "select",
+    "label": {
+      "text": "Activity zone",
+      "position": "left"
     },
-    {
-        "label": {
-            "text": "Activity time",
-            "position": "left"
+    "props": {
+      "placeholder": "Activity zone",
+      "filterable": true,
+      "clearable": true,
+      "options": [
+        {
+          "label": "Zone one",
+          "value": "shanghai"
         },
-        "rules": [
-            {
-                "required": false,
-                "message": ""
-            }
-        ],
-        "is": "col",
-        "code": "date1",
-        "props": {
-            "className": "flex",
-            "style": {
-                "display": "flex",
-                "width": "100%"
-            }
-        },
-        "showIf": {
-            "field": "resource",
-            "operator": "==",
-            "value": "Sponsorship"
-        },
-        "children": [
-            {
-                "code": "date1",
-                "defaultValue": "",
-                "is": "date-picker",
-                "span": 6,
-                "props": {
-                    "type": "date",
-                    "placeholder": "Pick a date",
-                    "format": "DD-MM-YYYY",
-                    "valueFormat": "YYYY-MM-DD"
-                },
-                "rules": [
-                    {
-                        "type": "date",
-                        "required": false,
-                        "message": "Please pick a date",
-                        "trigger": "change"
-                    }
-                ]
-            },
-            {
-                "is": "span",
-                "span": 1,
-                "code": "to",
-                "props": {
-                    "content": "to",
-                    "style": {
-                        "textAlign": "center",
-                        "width": "10px"
-                    }
-                },
-                "rules": []
-            },
-            {
-                "code": "time1",
-                "defaultValue": null,
-                "is": "time-select",
-                "span": 6,
-                "props": {
-                    "placeholder": "Pick a time",
-                    "start": "00:00",
-                    "end": "23:59",
-                    "step": "00:30",
-                    "style": {
-                        "width": "220px"
-                    }
-                },
-                "rules": [
-                    {
-                        "type": "string",
-                        "required": false,
-                        "message": "Please pick a time",
-                        "trigger": "change"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "code": "isActive",
-        "defaultValue": false,
-        "is": "switch",
-        "label": {
-            "text": "Is active",
-            "position": "left"
-        },
-        "props": {},
-        "rules": [
-            {
-                "required": false,
-                "message": "Please input activity form",
-                "trigger": "blur"
-            }
-        ]
-    },
-    {
-        "code": "desc",
-        "defaultValue": "",
-        "is": "input",
-        "label": {
-            "text": "Activity form",
-            "position": "left"
-        },
-        "props": {
-            "placeholder": "Please input activity form",
-            "type": "textarea",
-            "rows": 4,
-            "style": {
-                "width": "100%"
-            }
-        },
-        "rules": [
-            {
-                "required": false,
-                "message": "Please input activity form",
-                "trigger": "change"
-            }
-        ],
-        "showIf": {
-            "and": [
-                {
-                    "field": "region",
-                    "operator": "==",
-                    "value": "shanghai"
-                },
-                {
-                    "or": [
-                        {
-                            "field": "type",
-                            "operator": "includes",
-                            "value": 1
-                        },
-                        {
-                            "field": "resource",
-                            "operator": "==",
-                            "value": "Venue"
-                        }
-                    ]
-                }
-            ]
+        {
+          "label": "Zone two",
+          "value": "beijing"
         }
+      ]
     },
-    {
-        "code": "isAccepted",
-        "defaultValue": false,
-        "is": "checkbox",
-        "label": {
-            "text": " ",
-            "position": "left"
+    "rules": [
+      {
+        "required": false,
+        "message": "Please select Activity zone",
+        "trigger": "change"
+      }
+    ]
+  },
+  {
+    "code": "resource",
+    "defaultValue": "Venue",
+    "is": "radio-group",
+    "label": {
+      "text": "Resources",
+      "position": "left"
+    },
+    "props": {
+      "options": [
+        {
+          "label": "Sponsorship",
+          "value": "Sponsorship"
         },
+        {
+          "label": "Venue",
+          "value": "Venue"
+        }
+      ]
+    },
+    "rules": [
+      {
+        "required": false,
+        "message": "Please select activity resource",
+        "trigger": "change"
+      }
+    ]
+  },
+  {
+    "code": "type",
+    "defaultValue": [],
+    "is": "checkbox-group",
+    "label": {
+      "text": "Activity type",
+      "position": "left"
+    },
+    "props": {
+      "options": [
+        {
+          "label": "Online activities",
+          "value": 1
+        },
+        {
+          "label": "Promotion activities",
+          "value": 2
+        },
+        {
+          "label": "Offline activities",
+          "value": 3
+        },
+        {
+          "label": "Simple brand exposure",
+          "value": 4
+        }
+      ]
+    },
+    "rules": [
+      {
+        "type": "array",
+        "required": false,
+        "message": "Please select at least one activity type",
+        "trigger": "change"
+      }
+    ]
+  },
+  {
+    "label": {
+      "text": "Activity time",
+      "position": "left"
+    },
+    "rules": [
+      {
+        "required": false,
+        "message": ""
+      }
+    ],
+    "is": "col",
+    "code": "date1",
+    "props": {
+      "className": "flex"
+    },
+    "showIf": {
+      "field": "resource",
+      "operator": "==",
+      "value": "Sponsorship"
+    },
+    "children": [
+      {
+        "code": "date1",
+        "defaultValue": "",
+        "is": "date-picker",
+        "span": 11,
         "props": {
-            "label": "You accept the terms and conditions"
+          "type": "date",
+          "placeholder": "Pick a date",
+          "format": "DD-MM-YYYY",
+          "valueFormat": "YYYY-MM-DD"
         },
         "rules": [
-            {
-                "required": false,
-                "message": "Please input activity form",
-                "trigger": "blur"
-            }
+          {
+            "type": "date",
+            "required": false,
+            "message": "Please pick a date",
+            "trigger": "change"
+          }
         ]
-    },
-    {
-        "code": "text",
-        "defaultValue": null,
-        "is": "text",
-        "label": {
-            "text": " ",
-            "position": "left"
-        },
+      },
+      {
+        "is": "span",
+        "span": 2,
+        "code": "to",
         "props": {
-            "content": "This is a text field",
-            "style": {
-                "color": "#409eff",
-                "fontSize": "14px"
-            }
+          "content": "to",
+          "style": {
+            "display": "flex",
+            "textAlign": "center",
+            "width": "100px"
+          }
         },
         "rules": []
+      },
+      {
+        "code": "time1",
+        "defaultValue": null,
+        "is": "time-select",
+        "span": 11,
+        "props": {
+          "placeholder": "Pick a time",
+          "start": "00:00",
+          "end": "23:59",
+          "step": "00:30",
+          "style": {
+            "width": "220px"
+          }
+        },
+        "rules": [
+          {
+            "type": "string",
+            "required": false,
+            "message": "Please pick a time",
+            "trigger": "change"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "code": "isActive",
+    "defaultValue": false,
+    "is": "switch",
+    "label": {
+      "text": "Is active",
+      "position": "left"
+    },
+    "props": {},
+    "rules": [
+      {
+        "required": false,
+        "message": "Please input activity form",
+        "trigger": "blur"
+      }
+    ]
+  },
+  {
+    "code": "desc",
+    "defaultValue": "",
+    "is": "input",
+    "label": {
+      "text": "Activity form",
+      "position": "left"
+    },
+    "props": {
+      "placeholder": "Please input activity form",
+      "type": "textarea",
+      "rows": 4,
+      "style": {
+        "width": "100%"
+      }
+    },
+    "rules": [
+      {
+        "required": false,
+        "message": "Please input activity form",
+        "trigger": "change"
+      }
+    ],
+    "showIf": {
+      "and": [
+        {
+          "field": "region",
+          "operator": "==",
+          "value": "shanghai"
+        },
+        {
+          "or": [
+            {
+              "field": "type",
+              "operator": "includes",
+              "value": 1
+            },
+            {
+              "field": "resource",
+              "operator": "==",
+              "value": "Venue"
+            }
+          ]
+        }
+      ]
     }
+  },
+  {
+    "code": "isAccepted",
+    "defaultValue": false,
+    "is": "checkbox",
+    "label": {
+      "text": " ",
+      "position": "left"
+    },
+    "props": {
+      "label": "You accept the terms and conditions"
+    },
+    "rules": [
+      {
+        "required": false,
+        "message": "Please input activity form",
+        "trigger": "blur"
+      }
+    ]
+  },
+  {
+    "code": "text",
+    "defaultValue": null,
+    "is": "text",
+    "label": {
+      "text": " ",
+      "position": "left"
+    },
+    "props": {
+      "content": "This is a text field",
+      "style": {
+        "color": "#409eff",
+        "fontSize": "14px"
+      }
+    },
+    "rules": []
+  }
 ]
